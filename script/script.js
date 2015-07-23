@@ -35,11 +35,6 @@ var ToDoStorage = function(arr,addNew){
 
 
 press.onclick = init;
-if(JSON.parse(localStorage.a).length > 0){
-  for(i = 0; i < JSON.parse(localStorage.a).length; i++){
-    ul.appendChild(link).appendChild(a).innerHTML = JSON.parse(localStorage.a)[i];
-  }
-}
 
   function init(){
     if(text.value !== ''){
