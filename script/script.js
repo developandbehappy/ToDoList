@@ -29,7 +29,6 @@ var ToDoStorage = function(arr,addNew){
     this.removeItem = function(){
 
     }
-  }
 }
 
 
