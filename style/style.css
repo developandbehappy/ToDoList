@@ -37,6 +37,13 @@ body {
   height: 0;
 }
 
+#blockOne input[type="checkbox"] {
+    float: right;
+    position: relative;
+    bottom: 20px;
+    right: 10px;
+}
+
 #blockOne ul li:first-child {
   border-top: 1px solid #aaa;
   border-radius: 5px 5px 0 0;
@@ -54,11 +61,12 @@ body {
   background: #336;
 
 }
-#blockOne ul li a {
+#blockOne ul li label {
   color: #eee;
   text-shadow: 0 1px 0 #000;
   display: block;
   padding: 5px;
+  cursor: pointer;
 }
 
 

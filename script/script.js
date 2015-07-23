@@ -90,9 +90,14 @@ var TodoStorage = {
 function Prov(){
   if(TodoStorage.getAll()){
   for(i = 0; i < TodoStorage.getAll().length; i++){
-      var link = document.createElement("li");
-      var a = document.createElement("a");
+      link = document.createElement("li");
+      a = document.createElement("label");
+      a.setAttribute("for", "c"+i);
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "checkbox");
+      x.setAttribute("id", "c"+i);
       ul.appendChild(link).appendChild(a).innerHTML = TodoStorage.getAll()[i];
+      ul.appendChild(link).appendChild(x);
   }
 }
 else
@@ -103,7 +108,13 @@ else
 
 
 function addVis(text){
-      var link = document.createElement("li");
-      var a = document.createElement("a");
+      link = document.createElement("li");
+      a = document.createElement("label");
+      a.setAttribute("for", "c"+TodoStorage.getAll().length+1);
+      var x = document.createElement("INPUT");
+      x.setAttribute("type", "checkbox");
+      x.setAttribute("id", "c"+TodoStorage.getAll().length+1);
       ul.appendChild(link).appendChild(a).innerHTML = text;
+      ul.appendChild(link).appendChild(x);
+  
 }
