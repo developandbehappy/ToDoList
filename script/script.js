@@ -14,8 +14,8 @@ press.onclick = init;
 function init(){
   if(text.value !== ''){
     if(TodoStorage.getAll()){
-      TodoStorage.addItem(text.value);
-      addVis(text.value);
+      TodoStorage.addItem();
+      addVis(strip_tags(text.value));
       text.value = '';
 
     }
@@ -115,6 +115,9 @@ function addVis(text){
       x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+TodoStorage.getAll().length+1);
       ul.appendChild(link).appendChild(a).innerHTML = text;
-      ul.appendChild(link).appendChild(x);
-  
+      ul.appendChild(link).appendChild(x); 
+}
+
+function strip_tags( str ){
+    return str.replace(/<\/?[^>]+>/gi, '');
 }
