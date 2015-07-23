@@ -14,12 +14,21 @@ var ToDoStorage = function(arr,addNew){
     for(i = 0; i < arr.length; i++){
         ul.appendChild(link).appendChild(a).innerHTML = arr[i];
     }
-  }
+  },
   this.lastItem = function(arr){
     arr.pop();
-  }
+  },
   this.addItem = function(addNew){
     arr.push(text.value);
+  },
+  this.removeAll = function(arr){
+       for(i = 0; i < arr.length; i++){
+        arr.shift();
+    }
+  },
+    this.removeItem = function(){
+
+    }
   }
 }
 
