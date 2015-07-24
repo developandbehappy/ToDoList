@@ -138,9 +138,12 @@ function changeBox( s ){
   labelS = document.getElementById("cs"+s);
   x = document.getElementById("c"+s);
   if(x.checked){
+    labelS.style.textDecoration = "line-through";
     labelS.style.color = "#000";
+
   }
   else{
+    labelS.style.textDecoration = "none";
     labelS.style.color = "#fff";
   }
 }
