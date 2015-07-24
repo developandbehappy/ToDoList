@@ -12,7 +12,7 @@ press.onclick = init;
 
 
 function init(){
-  if(text.value !== ''){
+  if(text.value !== '' && !text.value >= 15){
     if(TodoStorage.getAll()){
       TodoStorage.addItem(strip_tags(text.value.trim()));
       addVis(strip_tags(text.value.trim()));
@@ -23,6 +23,9 @@ function init(){
       TodoStorage.create();
       TodoStorage.addItem(text.value);
     }
+  }
+  else{
+    alert("Вы не можете вводить пустую строку, или строку которая имеет больше 15 символов!");
   }
 }
 
