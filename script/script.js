@@ -12,7 +12,7 @@ press.onclick = init;
 
 
 function init(){
-  if(text.value !== ''){
+  if(text.value !== '' && text.value.length < 20){
     if(TodoStorage.getAll()){
       TodoStorage.addItem(strip_tags(text.value.trim()));
       addVis(strip_tags(text.value.trim()));
