@@ -14,10 +14,9 @@ press.onclick = init;
 function init(){
   if(text.value !== ''){
     if(TodoStorage.getAll()){
-      TodoStorage.addItem();
-      addVis(strip_tags(text.value));
+      TodoStorage.addItem(strip_tags(text.value.trim()));
+      addVis(strip_tags(text.value.trim()));
       text.value = '';
-
     }
     else
     {
@@ -96,6 +95,7 @@ function Prov(){
       var x = document.createElement("INPUT");
       x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+i);
+      x.setAttribute("onchange", "changeBox("+Math.floor(i+1)+")"); // Думай!
       ul.appendChild(link).appendChild(a).innerHTML = TodoStorage.getAll()[i];
       ul.appendChild(link).appendChild(x);
   }
@@ -107,6 +107,8 @@ else
 }
 
 
+
+
 function addVis(text){
       link = document.createElement("li");
       a = document.createElement("label");
@@ -114,10 +116,16 @@ function addVis(text){
       var x = document.createElement("INPUT");
       x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+TodoStorage.getAll().length+1);
+      x.setAttribute("onchange", "changeBox("+TodoStorage.getAll().length+")");
       ul.appendChild(link).appendChild(a).innerHTML = text;
       ul.appendChild(link).appendChild(x); 
 }
 
 function strip_tags( str ){
-    return str.replace(/<\/?[^>]+>/gi, '');
+  return str.replace(/<\/?[^>]+>/gi, '');
+}
+
+
+function changeBox( s ){
+console.log(s);
 }
