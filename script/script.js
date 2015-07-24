@@ -90,14 +90,17 @@ function Prov(){
   if(TodoStorage.getAll()){
   for(i = 0; i < TodoStorage.getAll().length; i++){
       link = document.createElement("li");
-      a = document.createElement("label");
-      a.setAttribute("for", "c"+i);
       var x = document.createElement("INPUT");
+      label = document.createElement("label");
+      label.setAttribute("for", "c"+i);
+      label.setAttribute("id", "cs"+i);
+      //
       x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+i);
-      x.setAttribute("onchange", "changeBox("+Math.floor(i+1)+")"); // Думай!
-      ul.appendChild(link).appendChild(a).innerHTML = TodoStorage.getAll()[i];
+      x.setAttribute("onclick", "changeBox("+i+")"); // Думай!
       ul.appendChild(link).appendChild(x);
+      ul.appendChild(link).appendChild(label).innerHTML = TodoStorage.getAll()[i];
+      
   }
 }
 else
@@ -111,14 +114,16 @@ else
 
 function addVis(text){
       link = document.createElement("li");
-      a = document.createElement("label");
-      a.setAttribute("for", "c"+TodoStorage.getAll().length+1);
       var x = document.createElement("INPUT");
+      label = document.createElement("label");
       x.setAttribute("type", "checkbox");
-      x.setAttribute("id", "c"+TodoStorage.getAll().length+1);
-      x.setAttribute("onchange", "changeBox("+TodoStorage.getAll().length+")");
-      ul.appendChild(link).appendChild(a).innerHTML = text;
-      ul.appendChild(link).appendChild(x); 
+      x.setAttribute("id", "c"+Math.floor(TodoStorage.getAll().length));
+      x.setAttribute("onclick", "changeBox("+TodoStorage.getAll().length+")");
+      label.setAttribute("for", "c"+Math.floor(TodoStorage.getAll().length));
+      label.setAttribute("id", "cs"+Math.floor(TodoStorage.getAll().length));
+      ul.appendChild(link).appendChild(x);
+      ul.appendChild(link).appendChild(label).innerHTML = text;
+       
 }
 
 function strip_tags( str ){
@@ -127,7 +132,12 @@ function strip_tags( str ){
 
 
 function changeBox( s ){
-  input = document.getElementById("c"+s);
-  label = document.getElementsByTagName("label")[s-1];
-      label.style.color = "#000";
+  labelS = document.getElementById("cs"+s);
+  x = document.getElementById("c"+s);
+  if(x.checked){
+    labelS.style.color = "#000";
+  }
+  else{
+    labelS.style.color = "#fff";
+  }
 }

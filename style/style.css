@@ -40,7 +40,7 @@ body {
 #blockOne input[type="checkbox"] {
     float: right;
     position: relative;
-    bottom: 20px;
+    top: 10px;
     right: 10px;
 }
 
