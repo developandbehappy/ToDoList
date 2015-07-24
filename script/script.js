@@ -97,7 +97,6 @@ function Prov(){
       label = document.createElement("label");
       label.setAttribute("for", "c"+i);
       label.setAttribute("id", "cs"+i);
-      //
       x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+i);
       x.setAttribute("onclick", "changeBox("+i+")"); // Думай!

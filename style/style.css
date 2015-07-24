@@ -12,16 +12,11 @@ body {
 }
 #block  {
   width: 410px;
-  height:140px;
-  background: #eee;
+  height: 180px;
+  
   border: 1px solid #aaa;
-  border-radius: 5px;
-  margin: 20px auto;
-  box-shadow: 0 1px 1px #000;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  margin: 0 auto;
+  padding: 20px;
 }
 
 #blockOne {
@@ -32,48 +27,39 @@ body {
   right: 0;
   width: 410px;
   background: rgba(234,234,240,.8);
-  border-radius: 5px;
-  /* border: 1px solid #eee; */
   height: 0;
 }
 
 #blockOne input[type="checkbox"] {
-    float: right;
+    float: left;
     position: relative;
-    top: 10px;
-    right: 10px;
+    top: 6px;
+    left: 10px;
 }
 
 #blockOne ul li:first-child {
   border-top: 1px solid #aaa;
-  border-radius: 5px 5px 0 0;
 }
 
 #blockOne ul li:last-child {
   border-bottom: 1px solid #aaa;
-  border-radius: 0 0 5px 5px;
 }
 
 #blockOne ul li {
-  list-style: none;
-  border-bottom: 1px dashed #000;
-  border-top: 1px dashed #aaa;
-  background: #336;
+    list-style: none;
+    border-bottom: 1px dashed #000000;
+    border-top: 1px dashed #ABABAB;
+    background: #4cae4c;
+    text-indent: 15px;
 
 }
 #blockOne ul li label {
-  color: #eee;
-  text-shadow: 0 1px 0 #000;
+  color: #fff;
   display: block;
   padding: 5px;
   cursor: pointer;
 }
 
-
-/* #blockOne ul {
-  display: block;
-
-} */
 #block h1 {
   text-align: center;
   color: #567;
@@ -81,7 +67,7 @@ body {
 }
 
 #block input[type="text"] {
-  display: block;
+/*  display: block;
   margin: auto;
   width: 300px;
   border: 1px solid #999;
@@ -89,17 +75,10 @@ body {
   font-size: 20px;
   color: #aaa;
   border-radius: 5px;
-  padding: 5px;
-  
-  
+  padding: 5px;*/
 }
 
 #block input[type="button"] {
-  display: block;
   float: right;
-  margin: 15px;
-  margin-right: 50px;
-  width: 100px;
-  height: 40px;
-  
+  margin-right: 39px;
 }
