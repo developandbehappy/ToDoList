@@ -127,5 +127,7 @@ function strip_tags( str ){
 
 
 function changeBox( s ){
-console.log(s);
+  input = document.getElementById("c"+s);
+  label = document.getElementsByTagName("label")[s-1];
+      label.style.color = "#000";
 }
