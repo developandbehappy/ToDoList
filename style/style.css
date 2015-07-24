@@ -78,7 +78,11 @@ body {
   padding: 5px;*/
 }
 
-#block input[type="button"] {
+#block #add {
   float: right;
   margin-right: 39px;
+  position: relative;
+  bottom: 34px;
+  left: 40px;
+
 }

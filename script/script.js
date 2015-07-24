@@ -14,7 +14,7 @@ press.onclick = init;
 function init(){
   if(text.value !== '' && text.value.length < 20){
     if(TodoStorage.getAll()){
-      TodoStorage.addItem(strip_tags(text.value.trim()));
+      TodoStorage.addItem({'title':strip_tags(text.value.trim())});
       addVis(strip_tags(text.value.trim()));
       text.value = '';
     }
@@ -45,7 +45,7 @@ function Prov(){
       x.setAttribute("id", "c"+i);
       x.setAttribute("onclick", "changeBox("+i+")"); // Думай!
       ul.appendChild(link).appendChild(x);
-      ul.appendChild(link).appendChild(label).innerHTML = TodoStorage.getAll()[i];
+      ul.appendChild(link).appendChild(label).innerHTML = TodoStorage.getAll()[i].title;
       
   }
 }
