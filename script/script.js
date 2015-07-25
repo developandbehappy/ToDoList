@@ -10,7 +10,6 @@ var ul = document.getElementById("ul");
 window.onload = Prov;
 press.onclick = init;
 
-
 function init() {
   if(text.value !== '' && text.value.length < 20) {
     if(TodoStorage.getAll()) {
@@ -71,7 +70,7 @@ function addVis(text) {
       label.setAttribute("for", "c"+Math.floor(TodoStorage.getAll().length-1));
       label.setAttribute("id", "cs"+Math.floor(TodoStorage.getAll().length-1));
       ul.appendChild(link).appendChild(x);
-      ul.appendChild(link).appendChild(label).innerHTML = text;       
+      ul.appendChild(link).appendChild(label).innerHTML = text;
 }
 
 function strip_tags(str) {
@@ -84,11 +83,18 @@ function changeBox(s) {
   x = document.getElementById("c"+s);
   getAll = TodoStorage.getAll()[s];
   if(x.checked) {
-    getAll.check = true;
+    chan = TodoStorage.getAll();
+    chan[s].check = true;
+    changeSet = JSON.stringify(chan);
+    localStorage.setItem(TodoStorage.storageName, changeSet);
     lineThrough(labelS);
     console.log(getAll.check);
  }
   else{
+    chan = TodoStorage.getAll();
+    chan[s].check = false;
+    changeSet = JSON.stringify(chan);
+    localStorage.setItem(TodoStorage.storageName, changeSet);
     labelS.style.textDecoration = "none";
     labelS.style.color = "#fff";
     getAll.check = false;

@@ -47,7 +47,8 @@ var TodoStorage = {
     StorageHelper.setObject(this.storageName, []);
   },
   getAll: function () {
-    return StorageHelper.get(this.storageName);
+    var data = StorageHelper.get(this.storageName);
+    return data;
   },
   addItem: function (item) {
     var arr = this.getAll();
