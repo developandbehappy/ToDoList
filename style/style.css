@@ -12,8 +12,7 @@ body {
 }
 #block  {
   width: 410px;
-  height: 180px;
-  
+  height: 180px;  
   border: 1px solid #aaa;
   margin: 0 auto;
   padding: 20px;
@@ -51,8 +50,12 @@ body {
     border-top: 1px dashed #ABABAB;
     background: #4cae4c;
     text-indent: 15px;
-
 }
+
+  .classText {
+    text-decoration: line-through;
+    color: #444;
+  }
 #blockOne ul li label {
   color: #fff;
   display: block;
@@ -86,3 +89,5 @@ body {
   left: 40px;
 
 }
+
+

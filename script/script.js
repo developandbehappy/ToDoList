@@ -11,17 +11,17 @@ window.onload = Prov;
 press.onclick = init;
 
 
-function init(){
-  if(text.value !== '' && text.value.length < 20){
-    if(TodoStorage.getAll()){
-      TodoStorage.addItem({'title':strip_tags(text.value.trim())});
+function init() {
+  if(text.value !== '' && text.value.length < 20) {
+    if(TodoStorage.getAll()) {
+      TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
       addVis(strip_tags(text.value.trim()));
       text.value = '';
     }
     else
     {
       TodoStorage.create();
-      TodoStorage.addItem(text.value);
+      TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
     }
   }
   else{
@@ -33,9 +33,9 @@ function init(){
 
 
 
-function Prov(){
-  if(TodoStorage.getAll()){
-  for(i = 0; i < TodoStorage.getAll().length; i++){
+function Prov() {
+  if(TodoStorage.getAll()) {
+  for(i = 0; i < TodoStorage.getAll().length; i++) {
       link = document.createElement("li");
       var x = document.createElement("INPUT");
       label = document.createElement("label");
@@ -43,10 +43,13 @@ function Prov(){
       label.setAttribute("id", "cs"+i);
       x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+i);
-      x.setAttribute("onclick", "changeBox("+i+")"); // Думай!
+      x.setAttribute("onclick", "changeBox("+i+")");
       ul.appendChild(link).appendChild(x);
       ul.appendChild(link).appendChild(label).innerHTML = TodoStorage.getAll()[i].title;
-      
+      if(TodoStorage.getAll()[i].check == true) {
+        x.setAttribute("checked",true);
+        lineThrough(label);
+      }
   }
 }
 else
@@ -58,35 +61,43 @@ else
 
 
 
-function addVis(text){
+function addVis(text) {
       link = document.createElement("li");
       var x = document.createElement("INPUT");
       label = document.createElement("label");
       x.setAttribute("type", "checkbox");
-      x.setAttribute("id", "c"+Math.floor(TodoStorage.getAll().length));
-      x.setAttribute("onclick", "changeBox("+TodoStorage.getAll().length+")");
-      label.setAttribute("for", "c"+Math.floor(TodoStorage.getAll().length));
-      label.setAttribute("id", "cs"+Math.floor(TodoStorage.getAll().length));
+      x.setAttribute("id", "c"+Math.floor(TodoStorage.getAll().length-1));
+      x.setAttribute("onclick", "changeBox("+Math.floor(TodoStorage.getAll().length-1)+")");
+      label.setAttribute("for", "c"+Math.floor(TodoStorage.getAll().length-1));
+      label.setAttribute("id", "cs"+Math.floor(TodoStorage.getAll().length-1));
       ul.appendChild(link).appendChild(x);
-      ul.appendChild(link).appendChild(label).innerHTML = text;
-       
+      ul.appendChild(link).appendChild(label).innerHTML = text;       
 }
 
-function strip_tags( str ){
+function strip_tags(str) {
   return str.replace(/<\/?[^>]+>/gi, '');
 }
 
 
-function changeBox( s ){
+function changeBox(s) {
   labelS = document.getElementById("cs"+s);
   x = document.getElementById("c"+s);
-  if(x.checked){
-    labelS.style.textDecoration = "line-through";
-    labelS.style.color = "#000";
-
-  }
+  getAll = TodoStorage.getAll()[s];
+  if(x.checked) {
+    getAll.check = true;
+    lineThrough(labelS);
+    console.log(getAll.check);
+ }
   else{
     labelS.style.textDecoration = "none";
     labelS.style.color = "#fff";
+    getAll.check = false;
+    console.log(getAll.check+' '+s);
   }
+}
+
+
+function lineThrough(label) {
+      label.style.textDecoration = "line-through";
+      label.style.color = "#000";
 }
