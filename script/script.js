@@ -37,12 +37,9 @@ function init() {
 function Prov() {
   if(TodoStorage.getAll()) {
   for(i = 0; i < TodoStorage.getAll().length; i++) {
-      link = document.createElement("li");
-      var x = document.createElement("INPUT");
-      label = document.createElement("label");
+      linkWithCheck();
       label.setAttribute("for", "c"+i);
       label.setAttribute("id", "cs"+i);
-      x.setAttribute("type", "checkbox");
       x.setAttribute("id", "c"+i);
       x.setAttribute("onclick", "changeBox("+i+")");
       ul.appendChild(link).appendChild(x);
@@ -63,10 +60,7 @@ else
 
 
 function addVis(text) {
-      link = document.createElement("li");
-      var x = document.createElement("INPUT");
-      label = document.createElement("label");
-      x.setAttribute("type", "checkbox");
+      linkWithCheck();
       x.setAttribute("id", "c"+Math.floor(TodoStorage.getAll().length-1));
       x.setAttribute("onclick", "changeBox("+Math.floor(TodoStorage.getAll().length-1)+")");
       label.setAttribute("for", "c"+Math.floor(TodoStorage.getAll().length-1));
@@ -106,4 +100,11 @@ function lineThrough(label) {
       label.style.textDecoration = "line-through";
       label.style.color = "rgb(177, 20, 20)";
       label.style.transition = "all 1s ease-out 0.5s";
+}
+
+function linkWithCheck(){
+      link = document.createElement("li");
+      x = document.createElement("INPUT");
+      label = document.createElement("label");
+      x.setAttribute("type", "checkbox");
 }
