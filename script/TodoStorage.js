@@ -48,8 +48,6 @@ var TodoStorage = {
   },
   getAll: function () {
     var data = StorageHelper.get(this.storageName);
-    console.log('я взял из стораджа все данные');
-    console.log('data', data);
     return data;
   },
   addItem: function (item) {
@@ -57,6 +55,6 @@ var TodoStorage = {
     arr.push(item);
     StorageHelper.setObject(this.storageName, arr);
     console.log('я добавил в сторедж новую цель');
-    console.log('arr', arr);
+    console.log('item', item);
   }
 };

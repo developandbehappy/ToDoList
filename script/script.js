@@ -46,6 +46,8 @@ function Prov() {
         lineThrough(label);
       }
   }
+      console.log('я взял из стораджа все данные');
+    console.log('data', TodoStorage.getAll());
 }
 else
   {
