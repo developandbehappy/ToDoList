@@ -15,12 +15,14 @@ function init() {
     if(TodoStorage.getAll()) {
       TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
       addVis(strip_tags(text.value.trim()));
+      console.log("[Storage Add] Добавлена новая цель"+strip_tags(text.value.trim()));
       text.value = '';
     }
     else
     {
       TodoStorage.create();
       TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
+      console.log("[Storage Add] Добавлена новая цель"+strip_tags(text.value.trim()));
     }
   }
   else{
@@ -81,24 +83,21 @@ function strip_tags(str) {
 function changeBox(s) {
   labelS = document.getElementById("cs"+s);
   x = document.getElementById("c"+s);
-  getAll = TodoStorage.getAll()[s];
+  chan = TodoStorage.getAll();
   if(x.checked) {
-    chan = TodoStorage.getAll();
     chan[s].check = true;
     changeSet = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     lineThrough(labelS);
-    console.log(getAll.check);
+    console.log("['TodoStorage'] Цель выполнена "+chan[s].title);
  }
   else{
-    chan = TodoStorage.getAll();
     chan[s].check = false;
     changeSet = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     labelS.style.textDecoration = "none";
     labelS.style.color = "#fff";
-    getAll.check = false;
-    console.log(getAll.check+' '+s);
+    console.log("['TodoStorage'] Цель была снята с выполненной задачи "+chan[s].title);
   }
 }
 
