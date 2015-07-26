@@ -11,11 +11,9 @@ body {
   background: #456;
 }
 #block  {
-  width: 410px;
+  width: 440px;
   height: 180px;  
-  border: 1px solid #aaa;
   margin: 0 auto;
-  padding: 20px;
 }
 
 #blockOne {
@@ -82,7 +80,7 @@ body {
     margin-right: 39px;
     position: relative;
     bottom: 34px;
-    left: 290px;
+    left: 330px;
     width: 80px;
     border-radius: 0 5px 5px 0;
 }
@@ -90,7 +88,6 @@ body {
 .barWithLink ul li {
     list-style: none;
     display: inline-block;
-    margin-left: 15px;
     border-radius: 0;
 }
 
@@ -100,5 +97,5 @@ body {
 
 .barWithLink ul {
   position: relative;
-  bottom: 20px;
+  bottom: 21px;
 }
