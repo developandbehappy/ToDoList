@@ -11,22 +11,19 @@ window.onload = Prov;
 press.onclick = init;
 
 function init() {
-  text = strip_tags(text.value.trim());
-  addText = TodoStorage.addItem({'title':text,'check':false});
-  if(text !== '' && text.length < 30) {
-    if(TodoStorage.getAll()) {
-      addText;
-      addVis(text);
-      text.value = '';
-    }
-    else
-    {
-      TodoStorage.create();
-      addText;
-    }
-  }
-  else{
+  if(text.value === '' && text.value.length > 30) {
     alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
+    return false;
+  }
+  if(TodoStorage.getAll()) {
+    TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
+    addVis(strip_tags(text.value.trim()));
+    text.value = '';
+  }
+  else
+  {
+    TodoStorage.create();
+    TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
   }
 }
 
@@ -103,8 +100,10 @@ function lineThrough(label) {
 }
 
 function linkWithCheck(){
-      link = document.createElement("li");
-      x = document.createElement("INPUT");
-      label = document.createElement("label");
-      x.setAttribute("type", "checkbox");
-}
+  link = document.createElement("li");
+  x = document.createElement("INPUT");
+  label = document.createElement("label");
+  x.setAttribute("type", "checkbox");
+
+  return x,label,link;
+} 
