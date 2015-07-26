@@ -82,12 +82,13 @@ body {
 }
 
 #block #add {
-  float: right;
-  margin-right: 39px;
-  position: relative;
-  bottom: 34px;
-  left: 40px;
-
+    float: right;
+    margin-right: 39px;
+    position: relative;
+    bottom: 34px;
+    left: 40px;
+    width: 80px;
+    border-radius: 0 5px 5px 0;
 }
 
 

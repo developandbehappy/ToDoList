@@ -106,4 +106,5 @@ function changeBox(s) {
 function lineThrough(label) {
       label.style.textDecoration = "line-through";
       label.style.color = "#000";
+      label.style.transition = "all 1s ease-out 0.5s";
 }
