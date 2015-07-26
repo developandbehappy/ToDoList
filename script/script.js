@@ -11,16 +11,18 @@ window.onload = Prov;
 press.onclick = init;
 
 function init() {
-  if(text.value !== '' && text.value.length < 30) {
+  text = strip_tags(text.value.trim());
+  addText = TodoStorage.addItem({'title':text,'check':false});
+  if(text !== '' && text.length < 30) {
     if(TodoStorage.getAll()) {
-      TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
-      addVis(strip_tags(text.value.trim()));
+      addText;
+      addVis(text);
       text.value = '';
     }
     else
     {
       TodoStorage.create();
-      TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
+      addText;
     }
   }
   else{
