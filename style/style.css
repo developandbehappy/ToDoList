@@ -79,13 +79,26 @@ body {
 }
 
 #block #add {
-    float: right;
     margin-right: 39px;
     position: relative;
     bottom: 34px;
-    left: 40px;
+    left: 290px;
     width: 80px;
     border-radius: 0 5px 5px 0;
 }
 
+.barWithLink ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 15px;
+    border-radius: 0;
+}
 
+.barWithLink ul li a {
+  border-radius: 0;
+}
+
+.barWithLink ul {
+  position: relative;
+  bottom: 20px;
+}
