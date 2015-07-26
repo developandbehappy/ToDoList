@@ -11,7 +11,7 @@ window.onload = Prov;
 press.onclick = init;
 
 function init() {
-  if(text.value !== '' && text.value.length < 20) {
+  if(text.value !== '' && text.value.length < 30) {
     if(TodoStorage.getAll()) {
       TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
       addVis(strip_tags(text.value.trim()));
@@ -24,7 +24,7 @@ function init() {
     }
   }
   else{
-    alert("Вы не можете вводить пустую строку, или строку которая имеет больше 20 символов!");
+    alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
   }
 }
 
