@@ -15,14 +15,12 @@ function init() {
     if(TodoStorage.getAll()) {
       TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
       addVis(strip_tags(text.value.trim()));
-      console.log("[Storage Add] Добавлена новая цель"+strip_tags(text.value.trim()));
       text.value = '';
     }
     else
     {
       TodoStorage.create();
       TodoStorage.addItem({'title':strip_tags(text.value.trim()),'check':false});
-      console.log("[Storage Add] Добавлена новая цель"+strip_tags(text.value.trim()));
     }
   }
   else{

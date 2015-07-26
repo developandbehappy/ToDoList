@@ -54,5 +54,7 @@ var TodoStorage = {
     var arr = this.getAll();
     arr.push(item);
     StorageHelper.setObject(this.storageName, arr);
+    console.log('я добавил в сторедж новую цель');
+    console.log('arr', arr);
   }
 };
