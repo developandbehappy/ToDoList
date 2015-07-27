@@ -10,18 +10,20 @@ var ul = document.getElementById("ul");
 window.onload = Prov;
 press.onclick = init;
 
+/*  @ STATE : active, remove, done*/
+
 function init() {
   if (text.value === '' && text.value.length > 30) {
     alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
     return false;
   }
-  if (TodoStorage.data.length > 0) {
-    TodoStorage.addItem({'title': strip_tags(text.value.trim()), 'check': false});
+  else if (TodoStorage.data.length > 0) {
+    TodoStorage.addItem({'title': strip_tags(text.value.trim()), 'check': false, 'state': 'active'});
     addVis(strip_tags(text.value.trim()));
     text.value = '';
   }
   else {
-    TodoStorage.addItem({'title': strip_tags(text.value.trim()), 'check': false});
+    TodoStorage.addItem({'title': strip_tags(text.value.trim()), 'check': false, 'state': 'active'});
     addVis(strip_tags(text.value.trim()));
     text.value = '';
   }
@@ -30,20 +32,7 @@ function init() {
 function Prov() {
   TodoStorage.getAll();
   if (TodoStorage.data.length > 0) {
-    allData = TodoStorage.data;
-    for (i = 0; i < allData.length; i++) {
-      linkWithCheck();
-      label.setAttribute("for", "c" + i);
-      label.setAttribute("id", "cs" + i);
-      x.setAttribute("id", "c" + i);
-      x.setAttribute("onclick", "changeBox(" + i + ")");
-      ul.appendChild(link).appendChild(x);
-      ul.appendChild(link).appendChild(label).innerHTML = allData[i].title;
-      if (TodoStorage.data[i].check == true) {
-        x.setAttribute("checked", true);
-        lineThrough(label);
-      }
-    }
+    
   }
   else {
     TodoStorage.create();
@@ -70,6 +59,7 @@ function changeBox(s) {
   chan = TodoStorage.data;
   if (x.checked) {
     chan[s].check = true;
+    chan[s].state = 'done';
     changeSet = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     lineThrough(labelS);
@@ -77,6 +67,7 @@ function changeBox(s) {
   }
   else {
     chan[s].check = false;
+    chan[s].state = 'active';
     changeSet = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     labelS.style.textDecoration = "none";
@@ -97,4 +88,4 @@ function linkWithCheck() {
   label = document.createElement("label");
   x.setAttribute("type", "checkbox");
   return x, label, link;
-} 
+}
