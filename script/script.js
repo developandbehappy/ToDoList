@@ -32,7 +32,8 @@ function init() {
 
 
 function Prov() {
-  if(TodoStorage.getAll()) {
+  if(TodoStorage.data.length > 0) {
+  allData = TodoStorage.data;
   for(i = 0; i < TodoStorage.getAll().length; i++) {
       linkWithCheck();
       label.setAttribute("for", "c"+i);
@@ -40,14 +41,12 @@ function Prov() {
       x.setAttribute("id", "c"+i);
       x.setAttribute("onclick", "changeBox("+i+")");
       ul.appendChild(link).appendChild(x);
-      ul.appendChild(link).appendChild(label).innerHTML = TodoStorage.getAll()[i].title;
+      ul.appendChild(link).appendChild(label).innerHTML = allData[i].title;
       if(TodoStorage.getAll()[i].check == true) {
-        x.setAttribute("checked",true);
-        lineThrough(label);
+          x.setAttribute("checked",true);
+          lineThrough(label);
       }
   }
-      console.log('я взял из стораджа все данные');
-    console.log('data', TodoStorage.getAll());
 }
 else
   {

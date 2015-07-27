@@ -40,6 +40,7 @@ var StorageHelper = {
 
 var TodoStorage = {
   storageName: 'todo_storage',
+  data: [],
   create: function () {
     if (this.getAll()) {
       return false;
@@ -47,11 +48,13 @@ var TodoStorage = {
     StorageHelper.setObject(this.storageName, []);
   },
   getAll: function () {
-    var data = StorageHelper.get(this.storageName);
-    return data;
+    this.data = StorageHelper.get(this.storageName);
+    console.log('я взял из стораджа все данные');
+    console.log('data', TodoStorage.data);
+    return this.data;
   },
   addItem: function (item) {
-    var arr = this.getAll();
+    var arr = this.data;
     arr.push(item);
     StorageHelper.setObject(this.storageName, arr);
     console.log('я добавил в сторедж новую цель');
