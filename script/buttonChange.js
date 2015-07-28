@@ -10,6 +10,7 @@ active.onclick = function(){
 	dn = false;
 	rem = false;
 	stateOn();
+	console.log('Its Active Block');
 }
 
 done.onclick = function(){
@@ -17,6 +18,7 @@ done.onclick = function(){
 	dn = true;
 	rem = false;
 	stateOn();
+	console.log('Its Done Block');
 }
 
 remove.onclick = function(){
@@ -24,43 +26,41 @@ remove.onclick = function(){
 	dn = false;
 	rem = true;
 	stateOn();
+	console.log('Its remove Block');
 }
 
 function stateOn(){
   stateIn = TodoStorage.data;
-  	deleteLabel();
+  deleteLabel();
   for (i = 0;i < stateIn.length; i++){
     if (act){
-      if(stateIn[i].state == 'active' ){
+      if(stateIn[i].state == 'active'){
 	      labelTake();
-	      console.log('Its Active Block');
   		}
     }
     if (dn){
-      if(stateIn[i].state == 'done' ){
+      if(stateIn[i].state == 'done'){
 	      labelTake();
 	      x.setAttribute("checked", true);
           lineThrough(label);
-	      console.log('Its Done Block');
   		}
     }
     if (rem){
-      if(stateIn[i].state == 'remove' ){
+      if(stateIn[i].state == 'remove'){
 	      labelTake();
-	      console.log('Its remove Block');
   		}
     }
       function labelTake(){
-	  link = document.createElement("li");
-	  x = document.createElement("INPUT");
-	  label = document.createElement("label");
-	  x.setAttribute("type", "checkbox");
-      label.setAttribute("for", "c" + i);
-      label.setAttribute("id", "cs" + i);
-      x.setAttribute("id", "c" + i);
-      x.setAttribute("onclick", "changeBox(" + i + ")");
-      ul.appendChild(link).appendChild(x);
-      ul.appendChild(link).appendChild(label).innerHTML = stateIn[i].title;
+		  link = document.createElement("li");
+		  x = document.createElement("INPUT");
+		  label = document.createElement("label");
+		  x.setAttribute("type", "checkbox");
+	      label.setAttribute("for", "c" + i);
+	      label.setAttribute("id", "cs" + i);
+	      x.setAttribute("id", "c" + i);
+	      x.setAttribute("onclick", "changeBox(" + i + ")");
+	      ul.appendChild(link).appendChild(x);
+	      ul.appendChild(link).appendChild(label).innerHTML = stateIn[i].title;
     }
   }
 }

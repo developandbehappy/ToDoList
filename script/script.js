@@ -13,7 +13,7 @@ press.onclick = init;
 /*  @ STATE : active, remove, done*/
 
 function init() {
-  if (text.value === '' && text.value.length > 30) {
+  if (text.value === '' || text.value.length > 30) {
     alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
     return false;
   }
@@ -30,12 +30,7 @@ function init() {
 }
 
 function Prov() {
-  TodoStorage.getAll();
-  if (TodoStorage.data.length > 0) {
-  }
-  else {
-    TodoStorage.create();
-  }
+  TodoStorage.create();
 }
 
 function addVis(text) {
