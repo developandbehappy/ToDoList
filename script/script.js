@@ -32,7 +32,6 @@ function init() {
 function Prov() {
   TodoStorage.getAll();
   if (TodoStorage.data.length > 0) {
-    
   }
   else {
     TodoStorage.create();
