@@ -31,9 +31,6 @@ function stateOn(){
   stateIn = TodoStorage.data;
   if(ul.childNodes.length > 0){
   	deleteLabel();
-  	deleteLabel();
-  	deleteLabel();
-  	deleteLabel();
 	}
   for (i = 0;i < stateIn.length; i++){
     if (act){
@@ -76,5 +73,6 @@ function deleteLabel(){
 		 x = document.getElementById("c"+i);
 		 label = document.getElementById("cs"+i);
 		 ul.removeChild(ul.childNodes[i]);
+		 deleteLabel();
 	}
 }
