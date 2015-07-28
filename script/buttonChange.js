@@ -16,7 +16,6 @@ done.onclick = function(){
 	act = false;
 	dn = true;
 	rem = false;
-	//deleteLabel();
 	stateOn();
 }
 
@@ -29,9 +28,7 @@ remove.onclick = function(){
 
 function stateOn(){
   stateIn = TodoStorage.data;
-  if(ul.childNodes.length > 0){
   	deleteLabel();
-	}
   for (i = 0;i < stateIn.length; i++){
     if (act){
       if(stateIn[i].state == 'active' ){
@@ -69,10 +66,12 @@ function stateOn(){
 }
 
 function deleteLabel(){
+    if(ul.childNodes.length > 0){
   	 for (i = 0;i < ul.childNodes.length; i++){
 		 x = document.getElementById("c"+i);
 		 label = document.getElementById("cs"+i);
 		 ul.removeChild(ul.childNodes[i]);
 		 deleteLabel();
+	  }
 	}
 }
