@@ -24,7 +24,9 @@ function init() {
     });
     addVisuale(stripTags(text.value.trim()));
     text.value = '';
+    document.location.href = "#active";
   } else {
+    TodoStorage.create();
     TodoStorage.addItem({
       title: stripTags(text.value.trim()),
       check: false,
@@ -36,14 +38,7 @@ function init() {
 }
 
 function addVisuale(text) {
-  linkWithCheck();
-  dataStorage = Math.floor(TodoStorage.data.length - 1);
-  x.setAttribute('id', 'c' + dataStorage );
-  x.setAttribute('onclick', 'changeBox(' + dataStorage + ')');
-  label.setAttribute('for', 'c' + dataStorage);
-  label.setAttribute('id', 'cs' + dataStorage);
-  ul.appendChild(link).appendChild(x);
-  ul.appendChild(link).appendChild(label).innerHTML = text;
+  linkWithCheck(text);
 }
 
 function stripTags(str) {
@@ -80,12 +75,16 @@ function lineThrough(label) {
   return label;
 }
 
-function linkWithCheck() {
-  var x = document.createElement('INPUT');
-  var label = document.createElement('label');
+function linkWithCheck(text) {
+  dataLength = Math.floor(TodoStorage.data.length - 1);
+  x = document.createElement('INPUT');
+  label = document.createElement('label');
+  link = document.createElement('li');
   x.setAttribute('type', 'checkbox');
-  return {
-    x: x,
-    label: label
-  };
+  x.setAttribute('id', 'c' + dataLength );
+  x.setAttribute('onclick', 'changeBox(' + dataLength + ')');
+  label.setAttribute('for', 'c' + dataLength);
+  label.setAttribute('id', 'cs' + dataLength);
+  ul.appendChild(link).appendChild(x);
+  ul.appendChild(link).appendChild(label).innerHTML = text;
 }
