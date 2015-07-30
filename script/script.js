@@ -5,7 +5,12 @@ var block = document.getElementById('block');
 var blockOne = document.getElementById('blockOne');
 var ul = document.getElementById('ul');
 
-window.onload = TodoStorage.create();
+window.onload = function(){
+  if(window.location.hash != ''){
+    window.location.hash = '';
+  }
+  TodoStorage.create();
+};
 press.onclick = init;
 
 /**
