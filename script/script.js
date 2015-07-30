@@ -57,7 +57,7 @@ function changeBox(s) {
     localStorage.setItem(TodoStorage.storageName, changeSet);
     lineThrough(labelS);
     console.log('[TodoStorage] done -> ' + chan[s].title);
-    stateOn();
+    window.setTimeout(stateOn,1000);
   } else {
     chan[s].check = false;
     chan[s].state = 'active';
@@ -66,7 +66,7 @@ function changeBox(s) {
     labelS.style.textDecoration = 'none';
     labelS.style.color = '#fff';
     console.log('[TodoStorage] undone -> ' + chan[s].title);
-    stateOn();
+    window.setTimeout(stateOn,1000);
   }
 }
 
