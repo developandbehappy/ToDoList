@@ -68,6 +68,8 @@ function changeBox(s) {
   }
 }
 
+
+
 function lineThrough(label) {
   label.style.textDecoration = 'line-through';
   label.style.color = 'rgb(177, 20, 20)';
@@ -80,11 +82,19 @@ function linkWithCheck(text) {
   x = document.createElement('INPUT');
   label = document.createElement('label');
   link = document.createElement('li');
+  linkA = document.createElement('a');
+  img = document.createElement('img');
+  img.setAttribute('src','img/ico_mus.png');
+  img.setAttribute('class','imgMus');
   x.setAttribute('type', 'checkbox');
   x.setAttribute('id', 'c' + dataLength );
   x.setAttribute('onclick', 'changeBox(' + dataLength + ')');
+  linkA.setAttribute('href','#');
+  linkA.setAttribute('class','delete' + dataLength);
   label.setAttribute('for', 'c' + dataLength);
   label.setAttribute('id', 'cs' + dataLength);
   ul.appendChild(link).appendChild(x);
+  ul.appendChild(link).appendChild(linkA).appendChild(img);
   ul.appendChild(link).appendChild(label).innerHTML = text;
 }
+
