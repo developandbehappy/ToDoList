@@ -1,3 +1,4 @@
+//gavnokod test
 var active = document.getElementById("active"),
   done = document.getElementById("done"),
   remove = document.getElementById("remove"),
