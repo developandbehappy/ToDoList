@@ -1,44 +1,55 @@
-var textBox = [];
-var press = document.getElementById('add');
-var text = document.getElementById('text');
-var block = document.getElementById('block');
-var blockOne = document.getElementById('blockOne');
-var ul = document.getElementById('ul');
+var press = document.getElementById("add");
+var text = document.getElementById("text");
+var block = document.getElementById("block");
+var blockOne = document.getElementById("blockOne");
+var ul = document.getElementById("ul");
 
-window.onload = function(){
-  if(window.location.hash != ''){
-    window.location.hash = '';
-  }
-  TodoStorage.create();
-};
+window.onload =  newWindow();
 press.onclick = init;
 
 /**
  * @ STATE : active, remove, done
  * @returns {boolean}
  */
+
+ function newWindow(){
+  if (window.location.hash == "#active"){
+    act = true;
+    dn = false;
+    rem = false;
+    stateOn();
+    console.log("Its Active Block");
+    h1.innerHTML = "Список заданий";
+    active.style.background = "#eee";
+    done.style.background = "#fff";
+    remove.style.background = "#fff";
+  }
+  TodoStorage.create();
+ }
 function init() {
-  if (text.value === '' || text.value.length > 30) {
-    alert('Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!');
+  if (text.value === "" || text.value.length > 30) {
+    alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
     return false;
   } else if (TodoStorage.data.length > 0) {
+    window.location.hash = "";
+    stateOn();
     TodoStorage.addItem({
       title: stripTags(text.value.trim()),
       check: false,
-      state: 'active'
+      state: "active"
     });
     addVisuale(stripTags(text.value.trim()));
-    text.value = '';
-    document.location.href = "#active";
+    text.value = "";
   } else {
     TodoStorage.create();
+    stateOn();
     TodoStorage.addItem({
       title: stripTags(text.value.trim()),
       check: false,
-      state: 'active'
+      state: "active"
     });
     addVisuale(stripTags(text.value.trim()));
-    text.value = '';
+    text.value = "";
   }
 }
 
@@ -47,30 +58,30 @@ function addVisuale(text) {
 }
 
 function stripTags(str) {
-  return str.replace(/<\/?[^>]+>/gi, '');
+  return str.replace(/<\/?[^>]+>/gi, "");
 }
 
 function changeBox(s) {
-  var labelS = document.getElementById('cs' + s);
-  var x = document.getElementById('c' + s);
+  var labelS = document.getElementById("cs" + s);
+  var x = document.getElementById("c" + s);
   var chan = TodoStorage.data;
-  var changeSet = '';
+  var changeSet = "";
   if (x.checked) {
     chan[s].check = true;
-    chan[s].state = 'done';
+    chan[s].state = "done";
     changeSet = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     lineThrough(labelS);
-    console.log('[TodoStorage] done -> ' + chan[s].title);
+    console.log("[TodoStorage] done -> " + chan[s].title);
     window.setTimeout(stateOn,1000);
   } else {
     chan[s].check = false;
-    chan[s].state = 'active';
+    chan[s].state = "active";
     changeSet = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
-    labelS.style.textDecoration = 'none';
-    labelS.style.color = '#fff';
-    console.log('[TodoStorage] undone -> ' + chan[s].title);
+    labelS.style.textDecoration = "none";
+    labelS.style.color = "#fff";
+    console.log("[TodoStorage] undone -> " + chan[s].title);
     window.setTimeout(stateOn,1000);
   }
 }
@@ -78,28 +89,28 @@ function changeBox(s) {
 
 
 function lineThrough(label) {
-  label.style.textDecoration = 'line-through';
-  label.style.color = 'rgb(177, 20, 20)';
-  label.style.transition = 'all 1s ease-out 0.5s';
+  label.style.textDecoration = "line-through";
+  label.style.color = "rgb(177, 20, 20)";
+  label.style.transition = "all 1s ease-out 0.5s";
   return label;
 }
 
 function linkWithCheck(text) {
-  dataLength = Math.floor(TodoStorage.data.length - 1);
-  x = document.createElement('INPUT');
-  label = document.createElement('label');
-  link = document.createElement('li');
-  linkA = document.createElement('a');
-  img = document.createElement('img');
-  img.setAttribute('src','img/ico_mus.png');
-  img.setAttribute('class','imgMus');
-  x.setAttribute('type', 'checkbox');
-  x.setAttribute('id', 'c' + dataLength );
-  x.setAttribute('onclick', 'changeBox(' + dataLength + ')');
-  linkA.setAttribute('href','#');
-  linkA.setAttribute('class','delete' + dataLength);
-  label.setAttribute('for', 'c' + dataLength);
-  label.setAttribute('id', 'cs' + dataLength);
+  var dataLength = Math.floor(TodoStorage.data.length - 1);
+  var x = document.createElement("INPUT");
+  var label = document.createElement("label");
+  var link = document.createElement("li");
+  var linkA = document.createElement("a");
+  var img = document.createElement("img");
+  img.setAttribute("src" , "img/ico_mus.png");
+  img.setAttribute("class" , "imgMus");
+  x.setAttribute("type", "checkbox");
+  x.setAttribute("id", "c" + dataLength );
+  x.setAttribute("onclick", "changeBox(" + dataLength + ")");
+  linkA.setAttribute("href" , "#");
+  linkA.setAttribute("class" , "delete" + dataLength);
+  label.setAttribute("for", "c" + dataLength);
+  label.setAttribute("id", "cs" + dataLength);
   ul.appendChild(link).appendChild(x);
   ul.appendChild(link).appendChild(linkA).appendChild(img);
   ul.appendChild(link).appendChild(label).innerHTML = text;

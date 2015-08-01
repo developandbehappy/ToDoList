@@ -61,28 +61,11 @@ body {
 #block h1 {
   text-align: center;
   color: #4cae4c;
-  text-shadow: 0 1px 0 #fff;
+  font-size: 30px;
 }
 
 #block input[type="text"] {
-/*  display: block;
-  margin: auto;
-  width: 300px;
-  border: 1px solid #999;
-  height: 30px;
-  font-size: 20px;
-  color: #aaa;
-  border-radius: 5px;
-  padding: 5px;*/
-}
-
-#block #add {
-    margin-right: 39px;
-    position: relative;
-    bottom: 34px;
-    left: 330px;
-    width: 80px;
-    border-radius: 0 5px 5px 0;
+  width: 360px;
 }
 
 .barWithLink ul li {
@@ -117,4 +100,14 @@ body {
     float: right;
     position: relative;
     right: 5px;
+}
+
+#nav {
+  width: 465px;
+  border: none;
+}
+
+#nav li {
+    width: 154px;
+    text-align: center;
 }
