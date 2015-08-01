@@ -4,7 +4,7 @@ var block = document.getElementById("block");
 var blockOne = document.getElementById("blockOne");
 var ul = document.getElementById("ul");
 
-window.onload =  newWindow();
+window.onload =  TodoSomeList;
 press.onclick = init;
 text.addEventListener('keydown',function(e) {
   if (e.keyCode === 13) {
@@ -16,26 +16,14 @@ text.addEventListener('keydown',function(e) {
  * @returns {boolean}
  */
 
- function newWindow(){
-  if (window.location.hash == "#active"){
-    act = true;
-    dn = false;
-    rem = false;
-    stateOn();
-    console.log("Its Active Block");
-    h1.innerHTML = "Список заданий";
-    active.style.background = "#eee";
-    done.style.background = "#fff";
-    remove.style.background = "#fff";
-  }
-  TodoStorage.create();
- }
 function init() {
   if (text.value === "" || text.value.length > 30) {
     alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
     return false;
   } else if (TodoStorage.data.length > 0) {
-    window.location.hash = "";
+    act = true;
+    dn = false;
+    rem = false;
     stateOn();
     TodoStorage.addItem({
       title: stripTags(text.value.trim()),
