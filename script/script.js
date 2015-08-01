@@ -6,7 +6,11 @@ var ul = document.getElementById("ul");
 
 window.onload =  newWindow();
 press.onclick = init;
-
+text.addEventListener('keydown',function(e) {
+  if (e.keyCode === 13) {
+    init();
+  }
+});
 /**
  * @ STATE : active, remove, done
  * @returns {boolean}
