@@ -1,7 +1,10 @@
 var active = document.getElementById("active"),
 done = document.getElementById("done"),
 remove = document.getElementById("remove"),
-h1 = document.getElementById("h1");
+h1 = document.getElementById("h1"),
+doneHash = "#done",
+activeHash = "#active",
+removeHash = "#remove";
 
 var act = false,
 dn = false,
@@ -59,14 +62,20 @@ function stateOn(one,two,three) {
       if (item.state == "done") {
         labelTake();
         x.setAttribute("checked", true);
-          lineThrough(label);          
+        lineThrough(label);          
       }
     }
     if (rem) {
       if (item.state == "remove") {
         labelTake();
-        ul.appendChild(link).removeChild(linkA);
-      ul.appendChild(link).removeChild(x);    
+        imgRet = document.createElement("img");
+        imgRet.setAttribute("src","img/return.png");
+        imgRet.setAttribute("class","ret");
+        linkA.setAttribute("id","imgRet");
+        linkA.setAttribute("onclick","returnLink("+i+")");
+        ul.appendChild(link).removeChild(linkA).removeChild(img);
+        ul.appendChild(link).removeChild(x);
+        ul.appendChild(link).appendChild(linkA).appendChild(imgRet);
       }
     }
 
@@ -96,17 +105,23 @@ function stateOn(one,two,three) {
 
 function TodoSomeList() {
   hash = window.location.hash;
-  hashStr = hash.toString();
-  if (hashStr == "#active") {
-    stateOn(true,false,false);
+  if (hash == "#active") {
+    a = true;
+    b = false;
+    c = false;
   }
-  else if (hashStr == "#done") {
-    stateOn(false,true,false);
+  else if (hash == "#done") {
+    a = false;
+    b = true;
+    c = false;
   }
-  else if (hashStr == "#remove") {
-    stateOn(false,false,true);
+  else if (hash == "#remove") {
+    a = false;
+    b = false;
+    c = true;
   }
   TodoStorage.create();
+  stateOn(a,b,c);
 }
 
 
@@ -130,3 +145,15 @@ function deleteLink(s) {
   console.log("[TodoStorage] remove -> " + getAllDate[s].title);
   window.setTimeout(stateOn,100);
 }
+
+
+function returnLink(s) {
+  link = document.getElementById("imgRet" + s);
+  getAllDate = TodoStorage.data;
+  getAllDate[s].state = "active";
+  changeSet = JSON.stringify(getAllDate);
+  localStorage.setItem(TodoStorage.storageName, changeSet);
+  console.log("[TodoStorage] return -> " + getAllDate[s].title);
+  window.setTimeout(stateOn,100);
+}
+

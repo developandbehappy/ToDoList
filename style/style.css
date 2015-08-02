@@ -102,6 +102,13 @@ body {
     right: 5px;
 }
 
+.ret {
+  float: right;
+  position: relative;
+  right: 5px;
+  bottom: 25px;
+}
+
 #nav {
   width: 465px;
   border: none;
