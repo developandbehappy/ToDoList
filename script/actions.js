@@ -1,10 +1,7 @@
 var active = document.getElementById("active"),
 done = document.getElementById("done"),
 remove = document.getElementById("remove"),
-h1 = document.getElementById("h1"),
-doneHash = "#done",
-activeHash = "#active",
-removeHash = "#remove";
+h1 = document.getElementById("h1");
 
 var act = false,
 dn = false,
