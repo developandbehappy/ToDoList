@@ -28,7 +28,7 @@
     "disallowKeywords": [ "with" ],
     "disallowMultipleLineBreaks": true,
     "disallowMultipleVarDecl": true,
-    "requireSpaceBeforeBlockStatements": true,
+    "requireSpaceBeforeBlockStatements": false,
     "requireParenthesesAroundIIFE": true,
     "requireSpacesInConditionalExpression": true,
     "requireBlocksOnNewline": 1,

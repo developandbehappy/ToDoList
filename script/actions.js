@@ -8,15 +8,15 @@ dn = false,
 rem = false;
 
 active.onclick = function() {
-  stateOn(true,false,false);
+  stateOn(true, false, false);
 }
 done.onclick = function() {
-  stateOn(false,true,false);
+  stateOn(false, true, false);
 }
 remove.onclick = function() {
-  stateOn(false,false,true);
+  stateOn(false, false, true);
 }
-function stateOn(one,two,three) {
+function stateOn(one, two, three) {
   if (one === true) {
   act = true;
   dn = false;
@@ -49,27 +49,27 @@ function stateOn(one,two,three) {
   }
   stateIn = TodoStorage.data;
   deleteLabel();
-  stateIn.forEach (function(item,i,arr) {
+  stateIn.forEach(function(item, i) {
     if (act) {
-      if (item.state == "active") {
+      if (item.state === "active") {
         labelTake();
       }
     }
     if (dn) {
-      if (item.state == "done") {
+      if (item.state === "done") {
         labelTake();
         x.setAttribute("checked", true);
         lineThrough(label);          
       }
     }
     if (rem) {
-      if (item.state == "remove") {
+      if (item.state === "remove") {
         labelTake();
         imgRet = document.createElement("img");
-        imgRet.setAttribute("src","img/return.png");
-        imgRet.setAttribute("class","ret");
-        linkA.setAttribute("id","imgRet");
-        linkA.setAttribute("onclick","returnLink("+i+")");
+        imgRet.setAttribute("src", "img/return.png");
+        imgRet.setAttribute("class", "ret");
+        linkA.setAttribute("id", "imgRet");
+        linkA.setAttribute("onclick", "returnLink(" + i + ")");
         ul.appendChild(link).removeChild(linkA).removeChild(img);
         ul.appendChild(link).removeChild(x);
         ul.appendChild(link).appendChild(linkA).appendChild(imgRet);
@@ -81,12 +81,12 @@ function stateOn(one,two,three) {
     x = document.createElement("INPUT");
     label = document.createElement("label");
     img = document.createElement("img");
-    img.setAttribute("src","img/ico_mus.png");
-    img.setAttribute("class","imgMus");
+    img.setAttribute("src", "img/ico_mus.png");
+    img.setAttribute("class", "imgMus");
     linkA = document.createElement("a");
-    linkA.setAttribute("id","delete" + i);
-    linkA.setAttribute("href","#");
-    linkA.setAttribute("onclick","deleteLink("+i+")");
+    linkA.setAttribute("id", "delete" + i);
+    linkA.setAttribute("href", "#");
+    linkA.setAttribute("onclick", "deleteLink(" + i + ")");
     x.setAttribute("type", "checkbox");
     label.setAttribute("for", "c" + i);
     label.setAttribute("id", "cs" + i);
@@ -96,29 +96,30 @@ function stateOn(one,two,three) {
     ul.appendChild(link).appendChild(x);
     ul.appendChild(link).appendChild(label).innerHTML = item.title;
   }
-});}
+});
+}
 
 
 
 function TodoSomeList() {
   hash = window.location.hash;
-  if (hash == "#active") {
+  if (hash === "#active") {
     a = true;
     b = false;
     c = false;
   }
-  else if (hash == "#done") {
+  else if (hash === "#done") {
     a = false;
     b = true;
     c = false;
   }
-  else if (hash == "#remove") {
+  else if (hash === "#remove") {
     a = false;
     b = false;
     c = true;
   }
   TodoStorage.create();
-  stateOn(a,b,c);
+  stateOn(a, b, c);
 }
 
 
@@ -140,7 +141,7 @@ function deleteLink(s) {
   changeSet = JSON.stringify(getAllDate);
   localStorage.setItem(TodoStorage.storageName, changeSet);
   console.log("[TodoStorage] remove -> " + getAllDate[s].title);
-  window.setTimeout(stateOn,100);
+  window.setTimeout(stateOn, 100);
 }
 
 
@@ -151,6 +152,6 @@ function returnLink(s) {
   changeSet = JSON.stringify(getAllDate);
   localStorage.setItem(TodoStorage.storageName, changeSet);
   console.log("[TodoStorage] return -> " + getAllDate[s].title);
-  window.setTimeout(stateOn,100);
+  window.setTimeout(stateOn, 100);
 }
 
