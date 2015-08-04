@@ -2,7 +2,7 @@ var active = document.getElementById("active"),
 done = document.getElementById("done"),
 remove = document.getElementById("remove"),
 h1 = document.getElementById("h1");
-
+var a,b,c;
 var act = false,
 dn = false,
 rem = false;
