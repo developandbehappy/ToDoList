@@ -16,7 +16,12 @@ text.addEventListener("keydown", function(e) {
 
 function init() {
   if (text.value === "" || text.value.length > 30) {
-    alert("Вы не можете вводить пустую строку, или строку которая имеет больше 30 символов!");
+    if(text.value === ""){
+      $.notify("Вы не можете вводить пустую строку", "warn");
+    }
+    else if(text.value.length > 30){
+      $.notify("Вы не можете отправить строку больше 30 символов", "warn");
+    }
     return false;
   } else if (TodoStorage.data.length > 0) {
     act = true;

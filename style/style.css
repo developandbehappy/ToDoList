@@ -115,3 +115,8 @@ body {
     width: 154px;
     text-align: center;
 }
+
+.notifyjs-corner {
+  font-size: 10px;
+  width: 50px;
+}
