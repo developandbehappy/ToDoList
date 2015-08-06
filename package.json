@@ -1,9 +1,24 @@
 {
-  "name": "ToDoList",
+  "name": "todo_list",
   "version": "1.0.0",
+  "description": "todo list",
+  "main": "gulpfile.js",
   "devDependencies": {
     "browser-sync": "^2.8.2",
     "gulp": "^3.9.0",
     "gulp-eslint": "^1.0.0"
-  }
+  },
+  "scripts": {
+    "test": "./node_modules/gulp/bin/gulp.js test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zidein07/ToDoList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zidein07/ToDoList/issues"
+  },
+  "homepage": "https://github.com/zidein07/ToDoList#readme"
 }
