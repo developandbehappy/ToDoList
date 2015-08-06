@@ -13,13 +13,7 @@ gulp.task('connect', function () {
     logConnections: true,
     notify: false,
     server: './'
-  })
-  gulp.watch([ 'script/*.js',
-               'style/*.css',
-               'index.html'])
-         .on('change', browserSync.reload);
-
-});
+  })});
 // Compile sass into CSS & auto-inject into browsers
 
 gulp.task('default', ['connect']);

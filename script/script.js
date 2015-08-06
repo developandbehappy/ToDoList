@@ -17,7 +17,7 @@ text.addEventListener("keydown", function(e) {
 function init() {
   if (text.value === "" || text.value.length > 30) {
     if(text.value === ""){
-      $.notify("Вы не можете вводить пустую строку", "warn");
+      $.notify("Вы не можете отправить пустую строку", "warn");
     }
     else if(text.value.length > 30){
       $.notify("Вы не можете отправить строку больше 30 символов", "warn");
