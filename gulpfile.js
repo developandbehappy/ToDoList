@@ -1,8 +1,9 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
 var eslint = require('gulp-eslint');
+var jscs = require('gulp-jscs');
 
-gulp.task('connect', function () {
+gulp.task('connect',['jscs'], function () {
   return browserSync.init({
     files: [
       'script/*.js',
@@ -13,7 +14,7 @@ gulp.task('connect', function () {
     logConnections: true,
     notify: false,
     server: './'
-  })
+  });
 });
 
 
@@ -21,4 +22,11 @@ gulp.task('test', function () {
   console.log('Test passed successfully');
 });
 
-gulp.task('default', ['connect']);
+gulp.task('jscs', function () {
+      gulp.src('script/actions.js')
+        .pipe(jscs());
+});
+
+gulp.task('default',['connect'], function(){
+
+});
