@@ -1,30 +1,25 @@
-var gulp = require('gulp'),
-  connect = require('gulp-connect'),
-  elsint = require('gulp-eslint');
+var gulp        = require('gulp');
+var browserSync = require('browser-sync').create();
 
-gulp.task('connectDev', function () {
-  connect.server({
-    root: ['app', 'tmp'],
-    port: 8000,
-    livereload: true
-  });
+// Static Server + watching scss/html files
+gulp.task('connect', function () {
+  return browserSync.init({
+    files: [
+      'script/*.js',
+      'style/*.css',
+      'index.html'
+    ],
+    port: 3000,
+    logConnections: true,
+    notify: false,
+    server: './'
+  })
+  gulp.watch([ 'script/*.js',
+               'style/*.css',
+               'index.html'])
+         .on('change', browserSync.reload);
+
 });
+// Compile sass into CSS & auto-inject into browsers
 
-gulp.task('connectDist', function () {
-  connect.server({
-    root: 'dist',
-    port: 8001,
-    livereload: true
-  });
-});
-
-gulp.task('html', function () {
-  gulp.src('*.html')
-    .pipe(connect.reload());
-});
-
-gulp.task('watch', function () {
-  gulp.watch(['index.html'], ['html']);
-});
-
-gulp.task('default', ['connectDist', 'connectDev', 'watch']);
+gulp.task('default', ['connect']);
