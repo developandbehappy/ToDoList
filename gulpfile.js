@@ -1,7 +1,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync').create();
+var eslint      = require('gulp-eslint');
 
-// Static Server + watching scss/html files
 gulp.task('connect', function () {
   return browserSync.init({
     files: [
@@ -14,6 +14,5 @@ gulp.task('connect', function () {
     notify: false,
     server: './'
   })});
-// Compile sass into CSS & auto-inject into browsers
 
 gulp.task('default', ['connect']);

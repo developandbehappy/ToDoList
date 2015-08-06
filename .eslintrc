@@ -1,0 +1,32 @@
+{
+    "rules": {
+        "accessor-pairs":1,
+        "block-scoped-var":0,
+        "complexity":1, 
+        "consistent-return":1, 
+        "curly":1, 
+        "default-case":1, 
+        "dot-notation":1, 
+        "dot-location":1, 
+        "eqeqeq":1, 
+        "guard-for-in":1, 
+        "no-alert":1, 
+        "no-caller":1, 
+        "no-div-regex":1, 
+        "no-else-return":1, 
+        "no-empty-label":1,
+        "no-eq-null":1, 
+        "no-eval":1, 
+        "no-extend-native":1, 
+        "radix":1, 
+        "vars-on-top":1, 
+        "wrap-iife":1, 
+        "yoda":1,
+        "no-undef": 0,
+        "strict":0,
+        "no-console":0,
+        "semi": 0,
+        "no-use-before-define":0,
+        "no-unused-vars":0
+    }
+}

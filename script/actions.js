@@ -7,16 +7,16 @@ var act = false,
 dn = false,
 rem = false;
 
-active.onclick = function() {
+active.onclick = function () {
   stateOn(true, false, false);
 }
-done.onclick = function() {
+done.onclick = function () {
   stateOn(false, true, false);
 }
-remove.onclick = function() {
+remove.onclick = function () {
   stateOn(false, false, true);
 }
-function stateOn(one, two, three) {
+function stateOn (one, two, three) {
   if (one === true) {
   act = true;
   dn = false;
@@ -48,23 +48,23 @@ function stateOn(one, two, three) {
   remove.style.background = "#eee";
   }
   stateIn = TodoStorage.data;
-  deleteLabel();
-  stateIn.forEach(function(item, i) {
+  deleteLabe();
+  stateIn.forEach(function (item, i) {
     if (act) {
       if (item.state === "active") {
-        labelTake();
+        labelTak();
       }
     }
     if (dn) {
       if (item.state === "done") {
-        labelTake();
+        labelTak();
         x.setAttribute("checked", true);
-        lineThrough(label);          
+        lineThrough(label);
       }
     }
     if (rem) {
       if (item.state === "remove") {
-        labelTake();
+        labelTak();
         imgRet = document.createElement("img");
         imgRet.setAttribute("src", "img/return.png");
         imgRet.setAttribute("class", "ret");
