@@ -3,7 +3,7 @@ var browserSync = require('browser-sync').create();
 var eslint = require('gulp-eslint');
 var jscs = require('gulp-jscs');
 
-gulp.task('connect',['jscs'], function () {
+gulp.task('connect', function () {
   return browserSync.init({
     files: [
       'script/*.js',
@@ -18,13 +18,19 @@ gulp.task('connect',['jscs'], function () {
 });
 
 
-gulp.task('test', function () {
+gulp.task('test',['jscs','eslint'], function () {
   console.log('Test passed successfully');
 });
 
 gulp.task('jscs', function () {
-      gulp.src('script/actions.js')
+      gulp.src('script/*.js')
         .pipe(jscs());
+});
+
+gulp.task('eslint',function () {
+  return gulp.src(['script/*.js'])
+        .pipe(eslint())
+        .pipe(eslint.format());
 });
 
 gulp.task('default',['connect'], function(){
