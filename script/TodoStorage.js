@@ -14,7 +14,6 @@ var IsJsonString = function(str) {
 };
 
 /**
- *
  * @type {{storage: Storage, setObject: Function, setString: Function, get: Function}}
  */
 var StorageHelper = {

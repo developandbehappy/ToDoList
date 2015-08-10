@@ -17,11 +17,10 @@ gulp.task('connect', function () {
   });
 });
 
-
-gulp.task('test', ['eslint', 'jscs']);
+gulp.task('test',['eslint','jscs']);
 
 gulp.task('jscs', function () {
-      gulp.src('script/*.js')
+      gulp.src('script/TodoStorage.js')
         .pipe(jscs());
 });
 
