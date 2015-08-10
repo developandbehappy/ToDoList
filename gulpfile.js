@@ -18,7 +18,7 @@ gulp.task('connect', function () {
 });
 
 
-gulp.task('test',['eslint']);
+gulp.task('test', ['eslint', 'jscs']);
 
 gulp.task('jscs', function () {
       gulp.src('script/*.js')
