@@ -39,7 +39,7 @@ var StorageHelper = {
 };
 
 var TodoStorage = {
-  storageName: 'todo_storage',
+  storageName: "todo_storage",
   data: [],
   create: function() {
     if (this.getAll()) {
@@ -49,15 +49,15 @@ var TodoStorage = {
   },
   getAll: function() {
     this.data = StorageHelper.get(this.storageName);
-    console.log('я взял из стораджа все данные');
-    console.log('data', TodoStorage.data);
+    console.log("я взял из стораджа все данные");
+    console.log("data", TodoStorage.data);
     return this.data;
   },
   addItem: function(item) {
     var arr = this.data;
     arr.push(item);
     StorageHelper.setObject(this.storageName, arr);
-    console.log('я добавил в сторедж новую цель');
-    console.log('item', item);
+    console.log("я добавил в сторедж новую цель");
+    console.log("item", item);
   }
 }

@@ -18,9 +18,7 @@ gulp.task('connect', function () {
 });
 
 
-gulp.task('test',['jscs','eslint'], function () {
-  console.log('Test passed successfully');
-});
+gulp.task('test',['jscs','eslint']);
 
 gulp.task('jscs', function () {
       gulp.src('script/*.js')
@@ -33,6 +31,6 @@ gulp.task('eslint',function () {
         .pipe(eslint.format());
 });
 
-gulp.task('default',['connect'], function(){
+gulp.task('default',['test'], function(){
 
 });

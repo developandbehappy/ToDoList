@@ -23,7 +23,7 @@
         "wrap-iife":1, 
         "yoda":1,
         "no-undef": 0,
-        "strict":1,
+        "strict":0,
         "no-console":0,
         "semi": 0,
         "no-use-before-define":0,

@@ -1,7 +1,8 @@
-var active = document.getElementById("active"),
-done = document.getElementById("done"),
-remove = document.getElementById("remove"),
-h1 = document.getElementById("h1");
+var active = document.getElementById("active");
+var done = document.getElementById("done");
+var remove = document.getElementById("remove");
+var h1 = document.getElementById("h1");
+
 var a, b, c; // var for while
 var act = false,
 dn = false,
@@ -16,7 +17,7 @@ done.onclick = function () {
 remove.onclick = function () {
   stateOn(false, false, true);
 }
-function stateOn (one, two, three) {
+function stateOn(one, two, three) {
   if (one === true) {
   act = true;
   dn = false;

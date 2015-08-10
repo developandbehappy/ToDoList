@@ -16,11 +16,11 @@ text.addEventListener("keydown", function(e) {
 
 function init() {
   if (text.value === "" || text.value.length > 30) {
-    if(text.value === ""){
-      $.notify("Вы не можете отправить пустую строку", "warn");
+    if (text.value === ""){
+        $.notify("Вы не можете отправить пустую строку", "warn");
     }
     else if(text.value.length > 30){
-      $.notify("Вы не можете отправить строку больше 30 символов", "warn");
+        $.notify("Вы не можете отправить строку больше 30 символов", "warn");
     }
     return false;
   } else if (TodoStorage.data.length > 0) {
@@ -81,7 +81,7 @@ function changeBox(s) {
   }
 }
 
-function lineThrough (label) {
+function lineThrough(label) {
   label.style.textDecoration = "line-through";
   label.style.color = "rgb(177, 20, 20)";
   label.style.transition = "all 1s ease-out 0.5s";
