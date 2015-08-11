@@ -27,7 +27,8 @@ gulp.task('jscs', function () {
 gulp.task('eslint',function () {
   return gulp.src(['script/actions.js'])
         .pipe(eslint())
-        .pipe(eslint.format());
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
 });
 
 gulp.task('default',['test'], function(){
