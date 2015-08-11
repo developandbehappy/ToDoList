@@ -17,15 +17,15 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('test',['eslint','jscs']);
+gulp.task('test', ['eslint']);
 
 gulp.task('jscs', function () {
-      gulp.src('script/TodoStorage.js')
+      gulp.src('script/actions.js')
         .pipe(jscs());
 });
 
 gulp.task('eslint',function () {
-  return gulp.src(['script/*.js'])
+  return gulp.src(['script/actions.js'])
         .pipe(eslint())
         .pipe(eslint.format());
 });
