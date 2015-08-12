@@ -1,14 +1,15 @@
-var active = { 
-  return document.getElementById('active');
-};
-var done   = document.getElementById('done');
-var remove = document.getElementById('remove');
-var h1     = document.getElementById('h1');
-
+var active, done, remove, h1; // block with id
 var a, b, c; // var for while
-var act = false,
-dn      = false,
-rem     = false;
+var act, dn, rem; // active link
+
+active = document.getElementById('active');
+done   = document.getElementById('done');
+remove = document.getElementById('remove');
+h1     = document.getElementById('h1');
+
+act = false;
+dn  = false;
+rem = false;
 
 active.onclick = function () {
   stateOn(true, false, false);
@@ -19,6 +20,7 @@ done.onclick = function () {
 remove.onclick = function () {
   stateOn(false, false, true);
 }
+
 function stateOn(one, two, three) {
   if (one === true) {
     act                     = true;
