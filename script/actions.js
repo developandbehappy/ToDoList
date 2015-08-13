@@ -11,25 +11,25 @@ var varForWhile = {
   c: null
 };
 
-var act = false, dn = false, rem = false; // active link
-
-someLink.active.onclick = function () {
-  stateOn(true, false, false);
+var activeLink = {
+  act: false,
+  dn: false,
+  rem: false
 };
 
-someLink.done.onclick = function () {
-  stateOn(false, true, false);
-};
-
-someLink.remove.onclick = function () {
-  stateOn(false, false, true);
-};
+var forLabel = {
+  link: undefined, 
+  x: undefined,    
+  label: undefined,
+  img: undefined, 
+  linkA: undefined
+}
 
 function stateOn(one, two, three) {
   if (one === true) {
-    act                              = true;
-    dn                               = false;
-    rem                              = false;
+    activeLink.act                   = true;
+    activeLink.dn                    = false;
+    activeLink.rem                   = false;
     console.log('Its Active Block');
     someLink.h1.innerHTML            = 'Список заданий';
     someLink.active.style.background = '#eee';
@@ -37,9 +37,9 @@ function stateOn(one, two, three) {
     someLink.remove.style.background = '#fff';
   }
   if (two === true) {
-    act                              = false;
-    dn                               = true;
-    rem                              = false;
+    activeLink.act                   = false;
+    activeLink.dn                    = true;
+    activeLink.rem                   = false;
     console.log('Its Done Block');
     someLink.h1.innerHTML            = 'Выполненные задания';
     someLink.active.style.background = '#fff';
@@ -47,68 +47,69 @@ function stateOn(one, two, three) {
     someLink.remove.style.background = '#fff';
   }
   if (three === true) {
-    act                              = false;
-    dn                               = false;
-    rem                              = true;
+    activeLink.act                   = false;
+    activeLink.dn                    = false;
+    activeLink.rem                   = true;
     console.log('Its remove Block');
     someLink.h1.innerHTML            = 'Удаленные задания';
     someLink.active.style.background = '#fff';
     someLink.done.style.background   = '#fff';
     someLink.remove.style.background = '#eee';
   }
+
   stateIn = TodoStorage.data;
   deleteLabel();
   stateIn.forEach(function (item, i) {
-    if (act) {
+    if (activeLink.act) {
       if (item.state === 'active') {
         labelTake();
       }
     }
-    if (dn) {
+
+    if (activeLink.dn) {
       if (item.state === 'done') {
         labelTake();
-        x.setAttribute('checked', true);
-        lineThrough(label);
+        forLabel.x.setAttribute('checked', true);
+        lineThrough(forLabel.label);
       }
     }
-    if (rem) {
+
+    if (activeLink.rem) {
       if (item.state === 'remove') {
         labelTake();
         imgRet = document.createElement('img');
         imgRet.setAttribute('src', 'img/return.png');
         imgRet.setAttribute('class', 'ret');
-        linkA.setAttribute('id', 'imgRet');
-        linkA.setAttribute('onclick', 'returnLink(' + i + ')');
-        ul.appendChild(link).removeChild(linkA).removeChild(img);
-        ul.appendChild(link).removeChild(x);
-        ul.appendChild(link).appendChild(linkA).appendChild(imgRet);
+        forLabel.linkA.setAttribute('id', 'imgRet');
+        forLabel.linkA.setAttribute('onclick', 'returnLink(' + i + ')');
+        ul.appendChild(forLabel.link).removeChild(forLabel.linkA).removeChild(forLabel.img);
+        ul.appendChild(forLabel.link).removeChild(forLabel.x);
+        ul.appendChild(forLabel.link).appendChild(forLabel.linkA).appendChild(imgRet);
       }
     }
 
   function labelTake() {
-    link  = document.createElement('li');
-    x     = document.createElement('INPUT');
-    label = document.createElement('label');
-    img   = document.createElement('img');
-    img.setAttribute('src', 'img/ico_mus.png');
-    img.setAttribute('class', 'imgMus');
-    linkA = document.createElement('a');
-    linkA.setAttribute('id', 'delete' + i);
-    linkA.setAttribute('href', '#');
-    linkA.setAttribute('onclick', 'deleteLink(' + i + ')');
-    x.setAttribute('type', 'checkbox');
-    label.setAttribute('for', 'c' + i);
-    label.setAttribute('id', 'cs' + i);
-    x.setAttribute('id', 'c' + i);
-    x.setAttribute('onclick', 'changeBox(' + i + ')');
-    ul.appendChild(link).appendChild(linkA).appendChild(img);
-    ul.appendChild(link).appendChild(x);
-    ul.appendChild(link).appendChild(label).innerHTML = item.title;
+    forLabel.link  = document.createElement('li');
+    forLabel.x     = document.createElement('INPUT');
+    forLabel.label = document.createElement('label');
+    forLabel.img   = document.createElement('img');
+    forLabel.linkA = document.createElement('a');
+    forLabel.img.setAttribute('src', 'img/ico_mus.png');
+    forLabel.img.setAttribute('class', 'imgMus');
+    forLabel.linkA.setAttribute('id', 'delete' + i);
+    forLabel.linkA.setAttribute('href', '#');
+    forLabel.linkA.setAttribute('onclick', 'deleteLink(' + i + ')');
+    forLabel.x.setAttribute('type', 'checkbox');
+    forLabel.label.setAttribute('for', 'c' + i);
+    forLabel.label.setAttribute('id', 'cs' + i);
+    forLabel.x.setAttribute('id', 'c' + i);
+    forLabel.x.setAttribute('onclick', 'changeBox(' + i + ')');
+    ul.appendChild(forLabel.link).appendChild(forLabel.linkA).appendChild(forLabel.img);
+    ul.appendChild(forLabel.link).appendChild(forLabel.x);
+    ul.appendChild(forLabel.link).appendChild(forLabel.label).innerHTML = item.title;
   }
 });
 }
-
-
 
 function TodoSomeList() {
   hash = window.location.hash;
@@ -164,3 +165,14 @@ function returnLink(s) {
   window.setTimeout(stateOn, 100);
 }
 
+someLink.active.onclick = function () {
+  stateOn(true, false, false);
+};
+
+someLink.done.onclick = function () {
+  stateOn(false, true, false);
+};
+
+someLink.remove.onclick = function () {
+  stateOn(false, false, true);
+};
