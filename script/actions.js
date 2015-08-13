@@ -1,75 +1,79 @@
-var active, done, remove, h1; // block with id
-var a, b, c; // var for while
-var act, dn, rem; // active link
+var someLink = {
+  active: document.getElementById('active'),
+  done: document.getElementById('done'),
+  remove: document.getElementById('remove'),
+  h1: document.getElementById('h1')
+};
 
-active = document.getElementById('active');
-done   = document.getElementById('done');
-remove = document.getElementById('remove');
-h1     = document.getElementById('h1');
+var varForWhile = {
+  a: null,
+  b: null,
+  c: null
+};
 
-act = false;
-dn  = false;
-rem = false;
+var act = false, dn = false, rem = false; // active link
 
-active.onclick = function () {
+someLink.active.onclick = function () {
   stateOn(true, false, false);
-}
-done.onclick = function () {
+};
+
+someLink.done.onclick = function () {
   stateOn(false, true, false);
-}
-remove.onclick = function () {
+};
+
+someLink.remove.onclick = function () {
   stateOn(false, false, true);
-}
+};
 
 function stateOn(one, two, three) {
   if (one === true) {
-    act                     = true;
-    dn                      = false;
-    rem                     = false;
+    act                              = true;
+    dn                               = false;
+    rem                              = false;
     console.log('Its Active Block');
-    h1.innerHTML            = 'Список заданий';
-    active.style.background = '#eee';
-    done.style.background   = '#fff';
-    remove.style.background = '#fff';
+    someLink.h1.innerHTML            = 'Список заданий';
+    someLink.active.style.background = '#eee';
+    someLink.done.style.background   = '#fff';
+    someLink.remove.style.background = '#fff';
   }
   if (two === true) {
-    act                     = false;
-    dn                      = true;
-    rem                     = false;
+    act                              = false;
+    dn                               = true;
+    rem                              = false;
     console.log('Its Done Block');
-    h1.innerHTML            = 'Выполненные задания';
-    active.style.background = '#fff';
-    done.style.background   = '#eee';
-    remove.style.background = '#fff';
+    someLink.h1.innerHTML            = 'Выполненные задания';
+    someLink.active.style.background = '#fff';
+    someLink.done.style.background   = '#eee';
+    someLink.remove.style.background = '#fff';
   }
   if (three === true) {
-    act                     = false;
-    dn                      = false;
-    rem                     = true;
+    act                              = false;
+    dn                               = false;
+    rem                              = true;
     console.log('Its remove Block');
-    h1.innerHTML            = 'Удаленные задания';
-    active.style.background = '#fff';
-    done.style.background   = '#fff';
-    remove.style.background = '#eee';
+    someLink.h1.innerHTML            = 'Удаленные задания';
+    someLink.active.style.background = '#fff';
+    someLink.done.style.background   = '#fff';
+    someLink.remove.style.background = '#eee';
   }
   stateIn = TodoStorage.data;
-  deleteLabe();
+  deleteLabel();
   stateIn.forEach(function (item, i) {
     if (act) {
       if (item.state === 'active') {
-        labelTak();
+        labelTake();
       }
     }
     if (dn) {
       if (item.state === 'done') {
-        labelTak();
+        labelTake();
         x.setAttribute('checked', true);
         lineThrough(label);
       }
     }
     if (rem) {
       if (item.state === 'remove') {
-        labelTak();
+        labelTake();
         imgRet = document.createElement('img');
         imgRet.setAttribute('src', 'img/return.png');
         imgRet.setAttribute('class', 'ret');
@@ -109,22 +113,22 @@ function stateOn(one, two, three) {
 function TodoSomeList() {
   hash = window.location.hash;
   if (hash === '#active') {
-    a = true;
-    b = false;
-    c = false;
+    varForWhile.a = true;
+    varForWhile.b = false;
+    varForWhile.c = false;
   }
   else if (hash === '#done') {
-    a = false;
-    b = true;
-    c = false;
+    varForWhile.a = false;
+    varForWhile.b = true;
+    varForWhile.c = false;
   }
   else if (hash === '#remove') {
-    a = false;
-    b = false;
-    c = true;
+    varForWhile.a = false;
+    varForWhile.b = false;
+    varForWhile.c = true;
   }
   TodoStorage.create();
-  stateOn(a, b, c);
+  stateOn(varForWhile.a, varForWhile.b, varForWhile.c);
 }
 
 
