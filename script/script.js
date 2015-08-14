@@ -1,6 +1,12 @@
 var press = document.getElementById("add");
 var text  = document.getElementById("text");
-var ul    = document.getElementById("ul");
+
+var varForWhile = {
+  a: null,
+  b: null,
+  c: null
+};
+
 
 window.onload = TodoSomeList;
 press.onclick = init;
@@ -15,12 +21,12 @@ text.addEventListener("keydown", function(e) {
  */
 
 function init() {
-  if (text.value === "" || text.value.length > 30) {
+  if (text.value === "" || text.value.length > 40) {
     if (text.value === "") {
         $.notify("Вы не можете отправить пустую строку", "warn");
     }
-    else if (text.value.length > 30) {
-        $.notify("Вы не можете отправить строку больше 30 символов", "warn");
+    else if (text.value.length > 40) {
+        $.notify("Вы не можете отправить строку больше 40 символов", "warn");
     }
     return false;
   } else if (TodoStorage.data.length > 0) {
@@ -104,32 +110,10 @@ function linkWithCheck(textFromInput) {
   linkA.setAttribute("class", "delete" + dataLength);
   label.setAttribute("for", "c" + dataLength);
   label.setAttribute("id", "cs" + dataLength);
-  ul.appendChild(link).appendChild(x);
-  ul.appendChild(link).appendChild(linkA).appendChild(img);
-  ul.appendChild(link).appendChild(label).innerHTML = textFromInput;
+  someLink.ul.appendChild(link).appendChild(x);
+  someLink.ul.appendChild(link).appendChild(linkA).appendChild(img);
+  someLink.ul.appendChild(link).appendChild(label).innerHTML = textFromInput;
 }
-
-function TodoSomeList() {
-  hash = window.location.hash;
-  if (hash === '#active') {
-    varForWhile.a = true;
-    varForWhile.b = false;
-    varForWhile.c = false;
-  }
-  if (hash === '#done') {
-    varForWhile.a = false;
-    varForWhile.b = true;
-    varForWhile.c = false;
-  }
-  if (hash === '#remove') {
-    varForWhile.a = false;
-    varForWhile.b = false;
-    varForWhile.c = true;
-  }
-  TodoStorage.create();
-  stateOn(varForWhile.a, varForWhile.b, varForWhile.c);
-}
-
 
 function deleteLink(s) {
   link                = document.getElementById('delete' + s);
@@ -153,12 +137,33 @@ function returnLink(s) {
 
 
 function deleteLabel() {
-  if (ul.childNodes.length > 0) {
-    for (var i = 0; i < ul.childNodes.length; i++) {
+  if (someLink.ul.childNodes.length > 0) {
+    for (var i = 0; i < someLink.ul.childNodes.length; i++) {
       getInput     = document.getElementById('c' + i);
       getlabel     = document.getElementById('cs' + i);
-      ul.removeChild(ul.childNodes[i]);
+      someLink.ul.removeChild(someLink.ul.childNodes[i]);
       deleteLabel();
     }
   }
+}
+
+function TodoSomeList() {
+  hash = window.location.hash;
+  if (hash === '#active') {
+    varForWhile.a = true;
+    varForWhile.b = false;
+    varForWhile.c = false;
+  }
+  if (hash === '#done') {
+    varForWhile.a = false;
+    varForWhile.b = true;
+    varForWhile.c = false;
+  }
+  if (hash === '#remove') {
+    varForWhile.a = false;
+    varForWhile.b = false;
+    varForWhile.c = true;
+  }
+  TodoStorage.create();
+  stateOn(varForWhile.a, varForWhile.b, varForWhile.c);
 }
