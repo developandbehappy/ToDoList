@@ -1,6 +1,6 @@
 var press = document.getElementById("add");
-var text = document.getElementById("text");
-var ul = document.getElementById("ul");
+var text  = document.getElementById("text");
+var ul    = document.getElementById("ul");
 
 window.onload = TodoSomeList;
 press.onclick = init;
@@ -16,16 +16,16 @@ text.addEventListener("keydown", function(e) {
 
 function init() {
   if (text.value === "" || text.value.length > 30) {
-    if (text.value === ""){
+    if (text.value === "") {
         $.notify("Вы не можете отправить пустую строку", "warn");
     }
-    else if(text.value.length > 30){
+    else if (text.value.length > 30) {
         $.notify("Вы не можете отправить строку больше 30 символов", "warn");
     }
     return false;
   } else if (TodoStorage.data.length > 0) {
     act = true;
-    dn = false;
+    dn  = false;
     rem = false;
     stateOn(true, false, false);
     TodoStorage.addItem({
@@ -57,14 +57,14 @@ function stripTags(str) {
 }
 
 function changeBox(s) {
-  var labelS = document.getElementById("cs" + s);
-  var x = document.getElementById("c" + s);
-  var chan = TodoStorage.data;
-  var changeSet = "";
+  var labelS      = document.getElementById("cs" + s);
+  var x           = document.getElementById("c" + s);
+  var chan        = TodoStorage.data;
+  var changeSet   = "";
   if (x.checked) {
     chan[s].check = true;
     chan[s].state = "done";
-    changeSet = JSON.stringify(chan);
+    changeSet     = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     lineThrough(labelS);
     console.log("[TodoStorage] done -> " + chan[s].title);
@@ -72,7 +72,7 @@ function changeBox(s) {
   } else {
     chan[s].check = false;
     chan[s].state = "active";
-    changeSet = JSON.stringify(chan);
+    changeSet     = JSON.stringify(chan);
     localStorage.setItem(TodoStorage.storageName, changeSet);
     labelS.style.textDecoration = "none";
     labelS.style.color = "#fff";
@@ -83,18 +83,18 @@ function changeBox(s) {
 
 function lineThrough(label) {
   label.style.textDecoration = "line-through";
-  label.style.color = "rgb(177, 20, 20)";
-  label.style.transition = "all 1s ease-out 0.5s";
+  label.style.color          = "rgb(177, 20, 20)";
+  label.style.transition     = "all 1s ease-out 0.5s";
   return label;
 }
 
 function linkWithCheck(textFromInput) {
   var dataLength = Math.floor(TodoStorage.data.length - 1);
-  var x = document.createElement("INPUT");
-  var label = document.createElement("label");
-  var link = document.createElement("li");
-  var linkA = document.createElement("a");
-  var img = document.createElement("img");
+  var x          = document.createElement("INPUT");
+  var label      = document.createElement("label");
+  var link       = document.createElement("li");
+  var linkA      = document.createElement("a");
+  var img        = document.createElement("img");
   img.setAttribute("src", "img/ico_mus.png");
   img.setAttribute("class", "imgMus");
   x.setAttribute("type", "checkbox");
@@ -109,3 +109,56 @@ function linkWithCheck(textFromInput) {
   ul.appendChild(link).appendChild(label).innerHTML = textFromInput;
 }
 
+function TodoSomeList() {
+  hash = window.location.hash;
+  if (hash === '#active') {
+    varForWhile.a = true;
+    varForWhile.b = false;
+    varForWhile.c = false;
+  }
+  if (hash === '#done') {
+    varForWhile.a = false;
+    varForWhile.b = true;
+    varForWhile.c = false;
+  }
+  if (hash === '#remove') {
+    varForWhile.a = false;
+    varForWhile.b = false;
+    varForWhile.c = true;
+  }
+  TodoStorage.create();
+  stateOn(varForWhile.a, varForWhile.b, varForWhile.c);
+}
+
+
+function deleteLink(s) {
+  link                = document.getElementById('delete' + s);
+  getAllDate          = TodoStorage.data;
+  getAllDate[s].state = 'remove';
+  changeSet           = JSON.stringify(getAllDate);
+  localStorage.setItem(TodoStorage.storageName, changeSet);
+  console.log('[TodoStorage] remove -> ' + getAllDate[s].title);
+  window.setTimeout(stateOn, 100);
+}
+
+function returnLink(s) {
+  link                = document.getElementById('imgRet' + s);
+  getAllDate          = TodoStorage.data;
+  getAllDate[s].state = 'active';
+  changeSet           = JSON.stringify(getAllDate);
+  localStorage.setItem(TodoStorage.storageName, changeSet);
+  console.log('[TodoStorage] return -> ' + getAllDate[s].title);
+  window.setTimeout(stateOn, 100);
+}
+
+
+function deleteLabel() {
+  if (ul.childNodes.length > 0) {
+    for (var i = 0; i < ul.childNodes.length; i++) {
+      getInput     = document.getElementById('c' + i);
+      getlabel     = document.getElementById('cs' + i);
+      ul.removeChild(ul.childNodes[i]);
+      deleteLabel();
+    }
+  }
+}
