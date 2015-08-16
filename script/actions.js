@@ -1,3 +1,5 @@
+var TodoStorage = TodoStorage || undefined;
+
 var someLink = {
   active: document.getElementById('active'),
   done: document.getElementById('done'),
