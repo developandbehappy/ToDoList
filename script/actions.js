@@ -25,8 +25,9 @@ var forLabel = {
 };
 
 function deleteLabel() {
+  var i = 0;
   if (someLink.ul.childNodes.length > 0) {
-    for (var i = 0; i < someLink.ul.childNodes.length; i++) {
+    for (i = 0; i < someLink.ul.childNodes.length; i++) {
       activeLink.getInput     = document.getElementById('c' + i);
       activeLink.getlabel     = document.getElementById('cs' + i);
       someLink.ul.removeChild(someLink.ul.childNodes[i]);
