@@ -26,12 +26,12 @@ var forLabel = {
 
 function deleteLabel() {
   if (someLink.ul.childNodes.length > 0) {
-    someLink.ul.childNodes.forEach(function (item, i) {
-      activeLink.getInput = document.getElementById('c' + i);
-      activeLink.getlabel = document.getElementById('cs' + i);
+    for (i = 0; i < someLink.ul.childNodes.length; i++) {
+      activeLink.getInput     = document.getElementById('c' + i);
+      activeLink.getlabel     = document.getElementById('cs' + i);
       someLink.ul.removeChild(someLink.ul.childNodes[i]);
       deleteLabel();
-    });
+    }
   }
 }
 
@@ -66,7 +66,6 @@ function stateOn(one, two, three) {
     someLink.h1.innerHTML            = 'Удаленные задания';
     console.log('Its remove Block');
   }
-
   activeLink.stateIn = TodoStorage.data;
   deleteLabel();
   activeLink.stateIn.forEach(function (item, i) {

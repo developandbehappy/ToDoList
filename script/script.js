@@ -135,18 +135,6 @@ function returnLink(s) {
   window.setTimeout(stateOn, 100);
 }
 
-
-function deleteLabel() {
-  if (someLink.ul.childNodes.length > 0) {
-    for (var i = 0; i < someLink.ul.childNodes.length; i++) {
-      getInput     = document.getElementById('c' + i);
-      getlabel     = document.getElementById('cs' + i);
-      someLink.ul.removeChild(someLink.ul.childNodes[i]);
-      deleteLabel();
-    }
-  }
-}
-
 function TodoSomeList() {
   hash = window.location.hash;
   if (hash === '#active') {
