@@ -40,31 +40,31 @@ function stateOn(one, two, three) {
     activeLink.act                   = true;
     activeLink.dn                    = false;
     activeLink.rem                   = false;
-    console.log('Its Active Block');
-    someLink.h1.innerHTML            = 'Список заданий';
     someLink.active.style.background = '#eee';
     someLink.done.style.background   = '#fff';
     someLink.remove.style.background = '#fff';
+    someLink.h1.innerHTML            = 'Список заданий';
+    console.log('Its Active Block');
   }
   if (two) {
     activeLink.act                   = false;
     activeLink.dn                    = true;
     activeLink.rem                   = false;
-    console.log('Its Done Block');
-    someLink.h1.innerHTML            = 'Выполненные задания';
     someLink.active.style.background = '#fff';
     someLink.done.style.background   = '#eee';
     someLink.remove.style.background = '#fff';
+    someLink.h1.innerHTML            = 'Выполненные задания';
+    console.log('Its Done Block');
   }
   if (three) {
     activeLink.act                   = false;
     activeLink.dn                    = false;
     activeLink.rem                   = true;
-    console.log('Its remove Block');
-    someLink.h1.innerHTML            = 'Удаленные задания';
     someLink.active.style.background = '#fff';
     someLink.done.style.background   = '#fff';
     someLink.remove.style.background = '#eee';
+    someLink.h1.innerHTML            = 'Удаленные задания';
+    console.log('Its remove Block');
   }
 
   activeLink.stateIn = TodoStorage.data;
