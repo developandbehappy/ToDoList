@@ -4,7 +4,7 @@
  * @returns {boolean}
  * @constructor
  */
-var IsJsonString = function (str) {
+var isJsonString = function (str) {
   try {
     JSON.parse(str);
   } catch (e) {
@@ -30,7 +30,7 @@ var StorageHelper = {
     if (!result) {
       return false;
     }
-    if (IsJsonString(result)) {
+    if (isJsonString(result)) {
       return JSON.parse(result);
     }
     return result;
@@ -59,4 +59,4 @@ var TodoStorage = {
     console.log('я добавил в сторедж новую цель');
     console.log('item', item);
   }
-}
+};

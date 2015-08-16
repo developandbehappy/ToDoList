@@ -26,14 +26,13 @@ var forLabel = {
 
 function deleteLabel() {
   if (someLink.ul.childNodes.length > 0) {
-    for (i = 0; i < someLink.ul.childNodes.length; i++) {
+    for (var i = 0; i < someLink.ul.childNodes.length; i++) {
       activeLink.getInput     = document.getElementById('c' + i);
       activeLink.getlabel     = document.getElementById('cs' + i);
       someLink.ul.removeChild(someLink.ul.childNodes[i]);
       deleteLabel();
     }
-  }
-  else {
+  } else {
     return false;
   }
 }
