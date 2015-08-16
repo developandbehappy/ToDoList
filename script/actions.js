@@ -25,14 +25,15 @@ var forLabel = {
 };
 
 function deleteLabel() {
-  if (someLink.ul.childElementCount > 0) {
-    someLink.ul.childNodes.forEach(function (item, i) {
+  if (someLink.ul.childNodes.length > 0) {
+    for (i = 0; i < someLink.ul.childNodes.length; i++) {
       activeLink.getInput     = document.getElementById('c' + i);
       activeLink.getlabel     = document.getElementById('cs' + i);
       someLink.ul.removeChild(someLink.ul.childNodes[i]);
       deleteLabel();
-    });
-  } else {
+    }
+  }
+  else {
     return false;
   }
 }
