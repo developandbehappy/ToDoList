@@ -10,7 +10,9 @@ var activeLink = {
   act: false,
   dn: false,
   rem: false,
-  stateIn: undefined
+  stateIn: undefined,
+  getInput: undefined,
+  getlabel: undefined
 };
 
 var forLabel = {
@@ -22,8 +24,19 @@ var forLabel = {
   imgDelete: undefined
 };
 
+function deleteLabel() {
+  if (someLink.ul.childNodes.length > 0) {
+    someLink.ul.childNodes.forEach(function (item, i) {
+      activeLink.getInput = document.getElementById('c' + i);
+      activeLink.getlabel = document.getElementById('cs' + i);
+      someLink.ul.removeChild(someLink.ul.childNodes[i]);
+      deleteLabel();
+    });
+  }
+}
+
 function stateOn(one, two, three) {
-  if (one === true) {
+  if (one) {
     activeLink.act                   = true;
     activeLink.dn                    = false;
     activeLink.rem                   = false;
@@ -33,7 +46,7 @@ function stateOn(one, two, three) {
     someLink.done.style.background   = '#fff';
     someLink.remove.style.background = '#fff';
   }
-  if (two === true) {
+  if (two) {
     activeLink.act                   = false;
     activeLink.dn                    = true;
     activeLink.rem                   = false;
@@ -43,7 +56,7 @@ function stateOn(one, two, three) {
     someLink.done.style.background   = '#eee';
     someLink.remove.style.background = '#fff';
   }
-  if (three === true) {
+  if (three) {
     activeLink.act                   = false;
     activeLink.dn                    = false;
     activeLink.rem                   = true;
@@ -77,12 +90,11 @@ function stateOn(one, two, three) {
       someLink.ul.appendChild(forLabel.link).appendChild(forLabel.x);
       someLink.ul.appendChild(forLabel.link).appendChild(forLabel.label).innerHTML = item.title;
     }
-  if (activeLink.act) {
+    if (activeLink.act) {
       if (item.state === 'active') {
         labelTake();
       }
     }
-
     if (activeLink.dn) {
       if (item.state === 'done') {
         labelTake();
@@ -90,7 +102,6 @@ function stateOn(one, two, three) {
         lineThrough(forLabel.label);
       }
     }
-
     if (activeLink.rem) {
       if (item.state === 'remove') {
         labelTake();
@@ -104,17 +115,17 @@ function stateOn(one, two, three) {
         someLink.ul.appendChild(forLabel.link).appendChild(forLabel.linkA).appendChild(forLabel.imgRet);
       }
     }
-
-
-});
+  });
 }
 
 someLink.active.onclick = function () {
   stateOn(true, false, false);
 };
+
 someLink.done.onclick = function () {
   stateOn(false, true, false);
 };
+
 someLink.remove.onclick = function () {
   stateOn(false, false, true);
 };
