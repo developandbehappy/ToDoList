@@ -260,9 +260,9 @@ window.changeBox = function(s) {
     console.log('[TodoStorage] undone -> ' + chan[s].title);
     window.setTimeout(stateOn, 1000);
   }
-}
+};
 
-function deleteLink(s) {
+window.deleteLink = function(s) {
   link                = document.getElementById('delete' + s);
   getAllDate          = TodoStorage.data;
   getAllDate[s].state = 'remove';
@@ -270,9 +270,9 @@ function deleteLink(s) {
   localStorage.setItem(TodoStorage.storageName, changeSet);
   console.log('[TodoStorage] remove -> ' + getAllDate[s].title);
   window.setTimeout(stateOn, 100);
-}
+};
 
-function returnLink(s) {
+window.returnLink = function(s) {
   link                = document.getElementById('imgRet' + s);
   getAllDate          = TodoStorage.data;
   getAllDate[s].state = 'active';
@@ -280,7 +280,7 @@ function returnLink(s) {
   localStorage.setItem(TodoStorage.storageName, changeSet);
   console.log('[TodoStorage] return -> ' + getAllDate[s].title);
   window.setTimeout(stateOn, 100);
-}
+};
 
 window.onload = TodoSomeList;
 someElForText.press.onclick = init;
