@@ -237,7 +237,7 @@ function init() {
   }
 }
 
-function changeBox(s) {
+window.changeBox = function(s) {
   var labelS      = document.getElementById('cs' + s);
   var x           = document.getElementById('c' + s);
   var chan        = TodoStorage.data;
