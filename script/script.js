@@ -25,7 +25,8 @@ var forLabel = {
   linkA: undefined,
   imgRet: undefined,
   imgDelete: undefined,
-  getAllDate: undefined
+  getAllDate: undefined,
+  hash: undefined
 };
 
 var someElForText = {
@@ -149,18 +150,18 @@ function stateOn(one, two, three) {
 }
 
 function TodoSomeList() {
-  hash = window.location.hash;
-  if (hash === '#active') {
+  forLabel.hash = window.location.hash;
+  if (forLabel.hash === '#active') {
     varForWhile.a = true;
     varForWhile.b = false;
     varForWhile.c = false;
   }
-  if (hash === '#done') {
+  if (forLabel.hash === '#done') {
     varForWhile.a = false;
     varForWhile.b = true;
     varForWhile.c = false;
   }
-  if (hash === '#remove') {
+  if (forLabel.hash === '#remove') {
     varForWhile.a = false;
     varForWhile.b = false;
     varForWhile.c = true;
