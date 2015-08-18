@@ -1,5 +1,4 @@
 var TodoStorage = TodoStorage || undefined;
-
 var someLink = {
   active: document.getElementById('active'),
   done: document.getElementById('done'),
@@ -241,7 +240,7 @@ function init() {
   }
 }
 
-window.changeBox = function(s) {
+window.changeBox = function (s) {
   var labelS      = document.getElementById('cs' + s);
   var x           = document.getElementById('c' + s);
   var chan        = TodoStorage.data;
@@ -266,7 +265,7 @@ window.changeBox = function(s) {
   }
 };
 
-window.deleteLink = function(s) {
+window.deleteLink = function (s) {
   forLabel.link                = document.getElementById('delete' + s);
   forLabel.getAllDate          = TodoStorage.data;
   forLabel.getAllDate[s].state = 'remove';
@@ -276,7 +275,7 @@ window.deleteLink = function(s) {
   window.setTimeout(stateOn, 100);
 };
 
-window.returnLink = function(s) {
+window.returnLink = function (s) {
   forLabel.link                = document.getElementById('imgRet' + s);
   forLabel.getAllDate          = TodoStorage.data;
   forLabel.getAllDate[s].state = 'active';
@@ -288,7 +287,7 @@ window.returnLink = function(s) {
 
 window.onload = TodoSomeList;
 someElForText.press.onclick = init;
-someElForText.text.addEventListener('keydown', function(e) {
+someElForText.text.addEventListener('keydown', function (e) {
   if (e.keyCode === 13) {
     init();
   }

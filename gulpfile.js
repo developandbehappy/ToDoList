@@ -20,12 +20,12 @@ gulp.task('connect', function () {
 gulp.task('test', ['eslint', 'jscs']);
 
 gulp.task('jscs', function () {
-      gulp.src('script/actions.js')
+      gulp.src('script/*.js')
         .pipe(jscs());
 });
 
 gulp.task('eslint',function () {
-  return gulp.src(['script/actions.js','script/TodoStorage.js','script/script.js'])
+  return gulp.src(['script/*.js'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failOnError());
