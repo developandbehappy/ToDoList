@@ -8,6 +8,7 @@ var someLink = {
   ul: document.getElementById('ul')
 };
 
+
 var activeLink = {
   act: false,
   dn: false,
@@ -23,7 +24,8 @@ var forLabel = {
   label: undefined,
   linkA: undefined,
   imgRet: undefined,
-  imgDelete: undefined
+  imgDelete: undefined,
+  getAllDate: undefined
 };
 
 var someElForText = {
@@ -263,22 +265,22 @@ window.changeBox = function(s) {
 };
 
 window.deleteLink = function(s) {
-  link                = document.getElementById('delete' + s);
-  getAllDate          = TodoStorage.data;
-  getAllDate[s].state = 'remove';
-  changeSet           = JSON.stringify(getAllDate);
+  forLabel.link                = document.getElementById('delete' + s);
+  forLabel.getAllDate          = TodoStorage.data;
+  forLabel.getAllDate[s].state = 'remove';
+  changeSet                    = JSON.stringify(forLabel.getAllDate);
   localStorage.setItem(TodoStorage.storageName, changeSet);
-  console.log('[TodoStorage] remove -> ' + getAllDate[s].title);
+  console.log('[TodoStorage] remove -> ' + forLabel.getAllDate[s].title);
   window.setTimeout(stateOn, 100);
 };
 
 window.returnLink = function(s) {
-  link                = document.getElementById('imgRet' + s);
-  getAllDate          = TodoStorage.data;
-  getAllDate[s].state = 'active';
-  changeSet           = JSON.stringify(getAllDate);
+  forLabel.link                = document.getElementById('imgRet' + s);
+  forLabel.getAllDate          = TodoStorage.data;
+  forLabel.getAllDate[s].state = 'active';
+  changeSet                    = JSON.stringify(forLabel.getAllDate);
   localStorage.setItem(TodoStorage.storageName, changeSet);
-  console.log('[TodoStorage] return -> ' + getAllDate[s].title);
+  console.log('[TodoStorage] return -> ' + forLabel.getAllDate[s].title);
   window.setTimeout(stateOn, 100);
 };
 
