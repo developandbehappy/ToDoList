@@ -26,7 +26,8 @@ var forLabel = {
   imgRet: undefined,
   imgDelete: undefined,
   getAllDate: undefined,
-  hash: undefined
+  hash: undefined,
+  changeSet: undefined
 };
 
 var someElForText = {
@@ -244,20 +245,20 @@ window.changeBox = function(s) {
   var labelS      = document.getElementById('cs' + s);
   var x           = document.getElementById('c' + s);
   var chan        = TodoStorage.data;
-  var changeSet   = '';
+  forLabel.changeSet   = '';
   if (x.checked) {
     chan[s].check = true;
     chan[s].state = 'done';
-    changeSet     = JSON.stringify(chan);
-    localStorage.setItem(TodoStorage.storageName, changeSet);
+    forLabel.changeSet     = JSON.stringify(chan);
+    localStorage.setItem(TodoStorage.storageName, forLabel.changeSet);
     lineThrough(labelS);
     console.log('[TodoStorage] done -> ' + chan[s].title);
     window.setTimeout(stateOn, 1000);
   } else {
     chan[s].check = false;
     chan[s].state = 'active';
-    changeSet     = JSON.stringify(chan);
-    localStorage.setItem(TodoStorage.storageName, changeSet);
+    forLabel.changeSet     = JSON.stringify(chan);
+    localStorage.setItem(TodoStorage.storageName, forLabel.changeSet);
     labelS.style.textDecoration = 'none';
     labelS.style.color = '#fff';
     console.log('[TodoStorage] undone -> ' + chan[s].title);
@@ -269,8 +270,8 @@ window.deleteLink = function(s) {
   forLabel.link                = document.getElementById('delete' + s);
   forLabel.getAllDate          = TodoStorage.data;
   forLabel.getAllDate[s].state = 'remove';
-  changeSet                    = JSON.stringify(forLabel.getAllDate);
-  localStorage.setItem(TodoStorage.storageName, changeSet);
+  forLabel.changeSet                    = JSON.stringify(forLabel.getAllDate);
+  localStorage.setItem(TodoStorage.storageName, forLabel.changeSet);
   console.log('[TodoStorage] remove -> ' + forLabel.getAllDate[s].title);
   window.setTimeout(stateOn, 100);
 };
@@ -279,8 +280,8 @@ window.returnLink = function(s) {
   forLabel.link                = document.getElementById('imgRet' + s);
   forLabel.getAllDate          = TodoStorage.data;
   forLabel.getAllDate[s].state = 'active';
-  changeSet                    = JSON.stringify(forLabel.getAllDate);
-  localStorage.setItem(TodoStorage.storageName, changeSet);
+  forLabel.changeSet                    = JSON.stringify(forLabel.getAllDate);
+  localStorage.setItem(TodoStorage.storageName, forLabel.changeSet);
   console.log('[TodoStorage] return -> ' + forLabel.getAllDate[s].title);
   window.setTimeout(stateOn, 100);
 };
