@@ -31,6 +31,6 @@ gulp.task('eslint',function () {
         .pipe(eslint.failOnError());
 });
 
-gulp.task('default',['test'], function(){
+gulp.task('default',['connect'], function(){
 
 });
